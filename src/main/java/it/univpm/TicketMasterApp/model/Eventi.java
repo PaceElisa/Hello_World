@@ -6,22 +6,25 @@ package it.univpm.TicketMasterApp.model;
 import java.util.Vector;
 
 /**
- * La classe Eventi mi dà le informazioni necessarie su un evento
+ * Classe  che fornisce le informazioni necessarie su un evento.
  * @author Marco Vassallo
  * @author Elisa Pace
  * 
  */
 public class Eventi {
+	
 	private String ID;
 	private String Name;
 	private String URL;
 	private String Descrizione;
+	private String Regione;
+	private String stateCode;
 	private String Data;
 	private Genere genere;
 /**
  * @see Promoter
  */
-	private Vector <Promoter> promoters;
+	private Vector <Promoter> promoters;	
 /**
  * 
  * @param iD
@@ -40,91 +43,138 @@ public class Eventi {
 		this.Data = data;
 		this.genere = genere;
 	}
+
 /**
- * questo metodo mi restituisce l'ID dell'evento
+ * Metodo che restituisce l'ID dell'evento
  * @return ID
  */
 	public String getID() {
 		return ID;
 	}
 /**
- * 
+ * Metodo che setta l'ID dell'evento
  * @param iD
  */
 	public void setID(String iD) {
 		ID = iD;
 	}
 /**
- * questo metodo mi restituisce il nome dell'evento
+ * Metodo che restituisce il nome dell'evento
  * @return Name
  */
 	public String getName() {
 		return Name;
 	}
 /**
- * 
+ * Metodo che setta il nome dell'evento
  * @param name
  */
 	public void setName(String name) {
 		this.Name = name;
 	}
 /**
- * questo metodo mi restituisce l'URL dell'evento
+ * Metodo che restituisce l'URL dell'evento
  * @return URL
  */
 	public String getURL() {
 		return URL;
 	}
 /**
- * 
+ * Metodo che setta l'URL dell'evento
  * @param uRL
  */
 	public void setURL(String uRL) {
 		URL = uRL;
 	}
 /**
- * questo metodo mi restituisce la descrizione dell'evento
+ * Metodo  che restituisce la descrizione dell'evento
  * @return Descrizione
  */
 	public String getDescrizione() {
 		return Descrizione;
 	}
 /**
+ * Metodo che setta la descrizione dell'evento
  * @param descrizione
  */
 	public void setDescrizione(String descrizione) {
 		this.Descrizione = descrizione;
 	}
+	/**
+	 * Metodo che restituisce il nome della regione del Canada in cui si svolge l'evento
+	 * @return Regione
+	 */
+	public String getRegione() {
+		return Regione;
+	}
+	/**
+	 * Metodo che setta il nome della regione del Canada in cui si svolge l'evento
+	 * @param regione
+	 */
+	public void setRegione(String regione) {
+		Regione = regione;
+	}
+	/**
+	 * Metodo che restituisce il codice postale della regione
+	 * @return stateCode
+	 */
+	public String getStateCode() {
+		return stateCode;
+	}
+	/**
+	 * Metodo che setta il codice postale della regione
+	 * @param stateCode
+	 */
+	public void setStateCode(String stateCode) {
+		this.stateCode = stateCode;
+	}
+	
 /**
- * questo metodo mi restituisce la data dell'evento
+ * Metodo che restituisce la data locale dell'evento
  * @return Data
  */
 	public String getData() {
 		return Data;
 	}
 /**
- * 
+ * Metodo che setta la data locale dell'evento
  * @param data
  */
 	public void setData(String data) {
 		this.Data = data;
 	}
 /**
- * questo metodo mi restituisce il genere dell'evento
+ * Metodo che restituisce il genere dell'evento
  * @return genere
  */
 	public Genere getGenere() {
 		return genere;
 	}
 /**
- * 
+ * Metodo che setta il genere dell'evento
  * @param genere
  */
 	public void setGenere(Genere genere) {
 		this.genere = genere;
 	}
+	/**
+	 * Metodo che mi ritorna il vettore dei promoters che sponsorizzano l'evento
+	 * @return promoters
+	 */
+	
+	public Vector<Promoter> getPromoters() {
+		return promoters;
+	}
+	/**
+	 * Metodo che setta il vettore dei promoters che sponsorizzano l'evento
+	 * @param promoters
+	 */
+	
+	public void setPromoters(Vector<Promoter> promoters) {
+		this.promoters = promoters;
+	}
 /**
- * questo metodo mi restituisce la lista dei promoter che organizzano l'evento
+ * Metodo che stampa gli elementi del vettore promoters che organizzano l'evento 
  * @return vettore
  */
 	public String toStringpromoters() {
