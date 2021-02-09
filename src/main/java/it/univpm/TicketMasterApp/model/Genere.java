@@ -12,9 +12,17 @@ package it.univpm.TicketMasterApp.model;
 public class Genere {
 	private String ID;
 	private String Name;
+	/**
+	 * Costruttore dell'oggetto
+	 */
+	
+	public Genere() {
+		super();
+	}
 /**
- * @param iD
- * @param name
+ * Costruttore dell'oggetto
+ * @param iD è l'identificatore dellla tipologia del genere dell'evento
+ * @param name è il nome della tipologia del genere dell'evento
  */
 	public Genere(String iD, String name) {
 		super();
@@ -28,7 +36,7 @@ public class Genere {
 	public String getID() {
 		return ID;
 	}
-/**
+/**Metodo che setta l'ID del genere del''evento
  * @param iD
  */
 	public void setID(String iD) {
@@ -42,7 +50,7 @@ public class Genere {
 		return Name;
 	}
 /**
- * 
+ * Metodo che setta il nome della tipologia del genere del''evento
  * @param name
  */
 	public void setName(String name) {
