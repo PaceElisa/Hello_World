@@ -24,9 +24,35 @@ public class Eventi {
 /**
  * @see Promoter
  */
-	private Vector <Promoter> promoters;	
+	private Vector <Promoter> promoters;
+	/**
+	 * Costruttore dell'oggetto
+	 */
+	public Eventi() {
+		super();
+	}
 /**
- * 
+ * Costruttore dell'oggetto
+ * @param ID
+ * @param Name
+ * @param url
+ * @param descrizione
+ * @param regione
+ * @param stateCode
+ */
+	public Eventi(String ID, String Name, String url, String descrizione, String regione, String stateCode) {
+		this.ID=ID;
+		this.Name=Name;
+		URL=url;
+		Descrizione=descrizione;
+		Regione=regione;
+		this.stateCode=stateCode;
+		this.Data=null;
+		this.genere=null;
+	}
+	
+/**
+ *  Costrutture dell'oggetto
  * @param iD
  * @param name
  * @param uRL
@@ -34,12 +60,14 @@ public class Eventi {
  * @param data
  * @param genere
  */
-	public Eventi(String iD, String name, String uRL, String descrizione, String data, Genere genere) {
+	public Eventi(String iD, String name, String uRL, String descrizione,String regione, String stateCode, String data, Genere genere) {
 		super();
 		ID = iD;
 		this.Name = name;
 		URL = uRL;
 		this.Descrizione = descrizione;
+		Regione=regione;
+		this.stateCode=stateCode;
 		this.Data = data;
 		this.genere = genere;
 	}
