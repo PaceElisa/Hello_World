@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"oggetti","l":"Dado"},{"p":"oggetti","l":"Dado0"},{"p":"oggetti","l":"Moneta"},{"p":"oggetti","l":"Moneta0"},{"p":"oggetti","l":"OggettoLanciato"}];updateSearchResults();
