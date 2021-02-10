@@ -22,7 +22,7 @@ import it.univpm.TicketMasterApp.model.Promoter;
 /**
  * Classe che scarica i dati di alcune regioni del Canada e li sistema in una struttura dati
  * @author Elisa Pace
- * 
+ * @author Marco Vassallo
  *
  */
 public class DownloadEvent {
@@ -32,6 +32,7 @@ public class DownloadEvent {
 	private String apikey="&apikey=n2GxsGGAemGGl1tFNAO23oGpb5NGoDx4";
 	/**
 	 * Struttura dati in cui viene inserito tutti dati necessari per definire un evento
+	 * @see Eventi
 	 */
 	Vector<Eventi> eventi= new Vector<>();
 	
@@ -39,7 +40,7 @@ public class DownloadEvent {
 	 * Metodo che richiede l'accesso al server di TicketMaster ,scarica i dati relativi agli eventi di alcune regioni passate per stateCode
 	 *  e restituisce un JSONArray che li contiene 
 	 * @param stateCode  è il codice postale con cui scarico i dati di quella specifica regione
-	 * @return events  è un JSONArray che contiene tutte informazioni di tutti gli eventi che hanno luogo 
+	 * @return events    è un JSONArray che contiene tutte informazioni di tutti gli eventi che hanno luogo 
 	 * in quella regione(stateCode)
 	 */
 	public JSONArray DatiRegione(String stateCode) {
@@ -125,7 +126,7 @@ public class DownloadEvent {
  * Metodo che analizza un singolo JSONObject n_eventi all'interno del JSONArray event alla ricerca del JSONArray promoters
  * ,una volta trovato, salva i dati al suo interno in vettore di promoters
  * @param n_eventi
- * @return restituisce un vettore vettorepro che contiene  oggetti di tipo promoters,
+ * @return vettorepro     restituisce il vettore vettorepro che contiene  oggetti di tipo promoters,
  *  relativi ad un JSONObject all'interno del JSONArray event
  */
 	
@@ -165,8 +166,8 @@ public class DownloadEvent {
 	/**
 	 * Metodo che analizza un singolo JSONObject n_eventi all'interno del JSONArray event alla ricerca dei dati relativi al genere dell'evento
  * ,una volta trovato, salva i dati al suo interno in un'istanza di Genere
-	 * @param stateCode è il codice postale della regione
-	 * @return gen un istanza di Genere che contiene id e nome del genere di un evento
+	 * @param n_eventi
+	 * @return gen      un istanza di Genere che contiene id e nome del genere di un evento
 	 */
 	public Genere DatiGenere(JSONObject n_eventi) {
 		
@@ -192,7 +193,7 @@ public class DownloadEvent {
 		
 	}
 	/**
-	 * Metodo che associa al codice postale  il nome della regione
+	 * Metodo che associa al codice postale il nome della regione
 	 * @param stateCode
 	 * @return il nome della regione(regione) associato al codice postale(stateCode)
 	 */
@@ -216,12 +217,9 @@ public class DownloadEvent {
 	
 	/**
 	 * 
-	 * @return eventi ritorna tutta la mia struttura dati completa
+	 * @return ritorna tutta la mia struttura dati completa
 	 */
 	public Vector<Eventi> getStrutturaDati(){
 		return eventi;
 	}
-	
-  
-
 }
