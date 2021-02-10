@@ -10,8 +10,11 @@ package it.univpm.TicketMasterApp.model;
  *
  */
 public class Promoter {
+	private String ID;
+	private String Nome;
+	private String Descrizione;
 /**
- * 
+ * costruttore dell'oggetto
  * @param iD
  * @param nome
  * @param descrizione
@@ -22,9 +25,7 @@ public class Promoter {
 		Nome = nome;
 		Descrizione = descrizione;
 	}
-	private String ID;
-	private String Nome;
-	private String Descrizione;
+
 /**
  * questo metodo mi restituisce i'ID del promoter
  * @return ID
