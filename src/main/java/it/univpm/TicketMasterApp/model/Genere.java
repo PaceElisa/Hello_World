@@ -60,6 +60,6 @@ public class Genere {
  * 	@Override
  */
 	public String toString() {
-		return "Genere [ID=" + ID + ", name=" + Name + "]";
+		return "Genere: [ID=" + ID + ", name=" + Name + "]";
 	}
 }
