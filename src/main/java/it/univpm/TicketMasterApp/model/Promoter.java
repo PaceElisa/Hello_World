@@ -34,7 +34,7 @@ public class Promoter {
 		return ID;
 	}
 /**
- * 
+ * Metodo che setta l'ID del promoter
  * @param iD
  */
 	public void setID(String iD) {
@@ -48,7 +48,7 @@ public class Promoter {
 		return Nome;
 	}
 /**
- * 
+ * Metodo che setta il nome del promoter
  * @param nome
  */
 	public void setNome(String nome) {
@@ -62,7 +62,7 @@ public class Promoter {
 		return Descrizione;
 	}
 /**
- * 
+ * Metodo che setta la descrizione del promoter
  * @param descrizione
  */
 	public void setDescrizione(String descrizione) {
@@ -72,6 +72,6 @@ public class Promoter {
  * 	@Override
  */
 	public String toString() {
-		return "Promoter [ID=" + ID + ", Nome=" + Nome + ", Descrizione=" + Descrizione + "]";
+		return "Promoter: [ID=" + ID + ", Nome=" + Nome + ", Descrizione=" + Descrizione + "]";
 	}
 }
