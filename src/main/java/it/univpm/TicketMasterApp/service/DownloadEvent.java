@@ -35,6 +35,11 @@ public class DownloadEvent {
 	 * @see Eventi
 	 */
 	Vector<Eventi> eventi= new Vector<>();
+	/**
+	 * Vettore che contiene tutti i promoter 
+	 */
+	Vector<Promoter> listaprom =new Vector<>();
+
 	
 	/**
 	 * Metodo che richiede l'accesso al server di TicketMaster ,scarica i dati relativi agli eventi di alcune regioni passate per stateCode
@@ -126,13 +131,13 @@ public class DownloadEvent {
  * Metodo che analizza un singolo JSONObject n_eventi all'interno del JSONArray event alla ricerca del JSONArray promoters
  * ,una volta trovato, salva i dati al suo interno in vettore di promoters
  * @param n_eventi
- * @return vettorepro     restituisce il vettore vettorepro che contiene  oggetti di tipo promoters,
+ * @return listaprom     restituisce il vettore vettorepro che contiene  oggetti di tipo promoters,
  *  relativi ad un JSONObject all'interno del JSONArray event
  */
 	
 	public Vector<Promoter> DatiPromoters(JSONObject n_eventi) {
 		
-		Vector<Promoter> vettorepro =new Vector<Promoter>();
+		
 		Promoter p;
 		
 		JSONArray promoters = (JSONArray) n_eventi.get("promoters"); 
@@ -143,7 +148,7 @@ public class DownloadEvent {
 		        String nome_promoters = null;             
 		        String promoters_descr = null;
 		        p=new Promoter(id_promoters, nome_promoters, promoters_descr);
-		        vettorepro.add(p);
+		        listaprom.add(p);
 			} else {
 					for(Object er : promoters) {
 					JSONObject op = (JSONObject) er;
@@ -153,11 +158,11 @@ public class DownloadEvent {
 			        if(promoters_descr.isEmpty())
 			        	promoters_descr="Non specificata";
 			        p=new Promoter(id_promoters, nome_promoters, promoters_descr);
-			        vettorepro.add(p);
+			        listaprom.add(p);
 			        }
 			}
 		
-		return vettorepro;
+		return listaprom;
 	}
 		
 		
@@ -210,6 +215,7 @@ public class DownloadEvent {
 		case "NS": regione="Nuova Scozia";break;
 		case "PE": regione="Isola del Principe Edoardo";break;
 		case "NL": regione="Terranova e Labrador";break;
+		default: regione=null;
 		
 		}
 		return regione;
@@ -222,4 +228,11 @@ public class DownloadEvent {
 	public Vector<Eventi> getStrutturaDati(){
 		return eventi;
 	}
+	/**
+	 * @return listaprom ritorna il vettore dei promoter
+	 */
+	public Vector<Promoter> getListaProm(){
+		return listaprom;
+	}
+
 }
