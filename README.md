@@ -30,3 +30,4 @@ L'utente può scegliere tra gli eventi che si svolgeranno nelle seguenti provinc
 ![Diagramma delle sequenze stats region](https://user-images.githubusercontent.com/77582844/107978411-00ed8400-6fbd-11eb-9c23-e6ca06fcbb13.PNG)
 
 ###### /StatsPromoter
+![Diagramma delle sequenze Stats promoter](https://user-images.githubusercontent.com/77582844/107978493-25e1f700-6fbd-11eb-8b2a-84ebfc8978ba.PNG)
