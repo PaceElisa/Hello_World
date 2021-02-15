@@ -24,7 +24,7 @@ L'utente può scegliere tra gli eventi che si svolgeranno nelle seguenti provinc
 
 #### Diagramma delle sequenze
 ###### /Promoter
-![Diagramma delle sequenze Promoter](https://user-images.githubusercontent.com/77582844/107978198-a94f1880-6fbc-11eb-9858-542e1fbf18f1.PNG)
+![Diagramma delle sequenze Promoter](https://user-images.githubusercontent.com/77582844/107984222-c1786500-6fc7-11eb-9a53-2391aa6521f3.PNG)
 
 ###### /StatsRegion
 ![Diagramma delle sequenze stats region](https://user-images.githubusercontent.com/77582844/107978411-00ed8400-6fbd-11eb-9c23-e6ca06fcbb13.PNG)
