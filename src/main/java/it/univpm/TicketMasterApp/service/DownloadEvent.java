@@ -126,6 +126,7 @@ public class DownloadEvent {
 			e.setData(data);
 			eventi.add(e);
 		}
+		
 	}
 /**
  * Metodo che analizza un singolo JSONObject n_eventi all'interno del JSONArray event alla ricerca del JSONArray promoters
@@ -207,14 +208,14 @@ public class DownloadEvent {
 		switch(stateCode) {
 		case "AB": regione="Alberta";break;
 		case "QC": regione="Quebec";break;
-		case "BC": regione="Columbia Britannica";break;
-		case "ON": regione="Ontario";break;
+		//case "BC": regione="Columbia Britannica";break;
+		//case "ON": regione="Ontario";break;
 		case "SK": regione="Saskatchewanc";break;
 		case "MB": regione="Manitoba";break;
 		case "NB": regione="Nuovo Brunswick";break;
-		case "NS": regione="Nuova Scozia";break;
-		case "PE": regione="Isola del Principe Edoardo";break;
-		case "NL": regione="Terranova e Labrador";break;
+		//case "NS": regione="Nuova Scozia";break;
+		//case "PE": regione="Isola del Principe Edoardo";break;
+		//case "NL": regione="Terranova e Labrador";break;
 		default: regione=null;
 		
 		}
