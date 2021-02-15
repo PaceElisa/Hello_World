@@ -17,13 +17,13 @@ import it.univpm.TicketMasterApp.model.Eventi;
 public abstract class Stats {
 	
 	private Vector<Eventi> eventi=new Vector<>();
-	private String parametro;
+	
 	
 	
 	public Stats(Vector<Eventi> eventi, String parametro) {
 		super();
 		this.eventi = eventi;
-		this.parametro = parametro;
+		
 	}
 	
 	public abstract int CalcoloTot();
