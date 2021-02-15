@@ -2,7 +2,7 @@
 
 ## Scaletta
 1. [Introduzione](#Introduzione)
-2. Diagrammi [UML](#UML)
+2. Diagrammi [UML](#Diagrammi UML)
 3. [Rotte](#Rotte)
 4. [Test](#Test)
 5. [Autori](#Autori)
