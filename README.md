@@ -41,5 +41,5 @@ N° | Tipo | Rotta | Descrizione
 
 ## Autori
 Il progetto è stato realizzato da:
-1. @Elisa Pace
-2. @Marco Vassallo
+1. Elisa Pace
+2. Marco Vassallo
