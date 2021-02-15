@@ -235,5 +235,13 @@ public class DownloadEvent {
 	public Vector<Promoter> getListaProm(){
 		return listaprom;
 	}
+	/**
+	 * Metodo che pulisce il Vector<Eventi> eventi
+	 */
+	public void clear() {
+		eventi=null;
+		// TODO Auto-generated method stub
+		
+	}
 
 }
