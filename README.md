@@ -1,11 +1,11 @@
 # TicketMasterApp
 
 ## Scaletta
-1. [Introduzione]{}
-2. [Diagrammi UML]{}
-3. [Rotte]{}
-4. [Tests]{}
-5. [Costruttori]{}
+1. [Introduzione]()
+2. [Diagrammi UML]()
+3. [Rotte]()
+4. [Test]()
+5. [Costruttori]()
 
 ## Introduzione
 La nostra applicazione permette a chi la consulta di sapere i principali eventi che si svolgeranno in alcune provincie del Canada tramite l'utilizzo dell'API TicketMaster.
