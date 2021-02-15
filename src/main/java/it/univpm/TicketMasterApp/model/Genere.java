@@ -62,4 +62,28 @@ public class Genere {
 	public String toString() {
 		return "Genere: [ID=" + ID + ", name=" + Name + "]";
 	}
+
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	Genere other = (Genere) obj;
+	if (ID == null) {
+		if (other.ID != null)
+			return false;
+	} else if (!ID.equals(other.ID))
+		return false;
+	if (Name == null) {
+		if (other.Name != null)
+			return false;
+	} else if (!Name.equals(other.Name))
+		return false;
+	return true;
+}
+	
+	
 }

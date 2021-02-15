@@ -74,4 +74,33 @@ public class Promoter {
 	public String toString() {
 		return "Promoter: [ID=" + ID + ", Nome=" + Nome + ", Descrizione=" + Descrizione + "]";
 	}
+
+
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	Promoter other = (Promoter) obj;
+	if (Descrizione == null) {
+		if (other.Descrizione != null)
+			return false;
+	} else if (!Descrizione.equals(other.Descrizione))
+		return false;
+	if (ID == null) {
+		if (other.ID != null)
+			return false;
+	} else if (!ID.equals(other.ID))
+		return false;
+	if (Nome == null) {
+		if (other.Nome != null)
+			return false;
+	} else if (!Nome.equals(other.Nome))
+		return false;
+	return true;
+}
+	
 }
