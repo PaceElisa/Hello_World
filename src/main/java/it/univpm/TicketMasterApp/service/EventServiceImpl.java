@@ -40,5 +40,24 @@ public class EventServiceImpl implements EventService {
 		return giusti;
 		
 	}
+	/*public JSONArray StatsReg() {
+		Vector<String> regione= new Vector<>();
+		regione.add("AB");
+		regione.add("QC");
+		regione.add("MB");
+		regione.add("NB");
+		regione.add("SK");
+		
+		DownloadEvent event= new DownloadEvent();
+		
+		for(String s:regione) {
+			event.EventiInfo(s);
+			
+		}
+		
+		
+		
+		
+	}*/
 
 }

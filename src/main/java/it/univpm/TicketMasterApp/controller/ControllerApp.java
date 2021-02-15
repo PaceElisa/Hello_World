@@ -46,13 +46,13 @@ public class ControllerApp {
 		return new ResponseEntity<> (err.PromoterError(),HttpStatus.BAD_REQUEST);
 		
 	}
-	
+/*	
 	@RequestMapping(value="statsReg")
 	public ResponseEntity<Object> getStasRegion()
 	{
 		return new ResponseEntity<>(e.StatsReg().toString(),HttpStatus.OK);
 	}
-	
+	*/
 	
 	
 	
