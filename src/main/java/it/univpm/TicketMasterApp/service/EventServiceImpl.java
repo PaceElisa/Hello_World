@@ -27,7 +27,13 @@ public class EventServiceImpl implements EventService {
 	 */
 	public EventServiceImpl() {}
 	
-	/**@param
+	/**Metodo che ritorna la lista dei promoter di una regione scelta dall'utente come suggerimento 
+	 * @param stateCode cosice postale della regione di cui si richiede la lista di promoter
+	 * @see DownloadEvent#Associa(String)
+	 * @see DownloadEvent#EventiInfo(String)
+	 * @see DownloadEvent#getListaProm()
+	 * @see Promoter#equals(Object)
+	 * @see Promoter#getID()
 	 * @return
 	 */
 	public Vector<Promoter> getPromoter(String stateCode) throws WrongStateCodeException, NoPromoterException{
@@ -53,9 +59,18 @@ public class EventServiceImpl implements EventService {
 		return giusti;
 		
 	}
+	/**
+	 * Metodo che mi restituisce un jsonarray con tutte le statistiche di ogni regione
+	 * @see DownloadEvent#EventiInfo(String)
+	 * @see DownloadEvent#getStrutturaDati()
+	 * @see DownloadEvent#clear()
+	 * @see Stats#getJSONObject()
+	 * @return un jsonarray con tanti jsonobject quante le regioni analizzate, che contengono le statistiche di quest'ultime
+	 */
 	@SuppressWarnings("unchecked")
 	public JSONArray StatsRegion() {
 		JSONArray sr=new JSONArray();
+		//definisco un vettore di String con gli stateCode delle regioni che ho deciso di analizzare
 		Vector<String> regione= new Vector<>();
 		regione.add("AB");
 		regione.add("QC");
@@ -64,11 +79,13 @@ public class EventServiceImpl implements EventService {
 		regione.add("SK");
 		
 		DownloadEvent event= new DownloadEvent();
-		
+		//per ogni elemnto di regione scarico i dati relativi ad esso e lo passo come parametri al costruttore della classe statistica
 		for(String s:regione) {
 			event.EventiInfo(s);
 			Stats statistica=new StasReg(event.getStrutturaDati(),s);
 			sr.add(statistica.getJSONObject());
+			//dopo ogni operazione ho la necessita di cancellare il contenuto di event per permettere alla mia struttura dati di contenere
+			//solo informazioni di quella regione
 			event.clear();
 		}
 		return sr;
