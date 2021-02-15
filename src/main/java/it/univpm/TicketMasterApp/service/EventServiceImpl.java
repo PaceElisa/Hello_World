@@ -4,10 +4,14 @@
 package it.univpm.TicketMasterApp.service;
 
 import java.util.Vector;
+
+import org.json.simple.JSONArray;
 import org.springframework.stereotype.Service;
 import it.univpm.TicketMasterApp.exception.NoPromoterException;
 import it.univpm.TicketMasterApp.exception.WrongStateCodeException;
 import it.univpm.TicketMasterApp.model.Promoter;
+import it.univpm.TicketMasterApp.utils.stats.StasReg;
+import it.univpm.TicketMasterApp.utils.stats.Stats;
 
 /**Classe che gestisce i metodi chiamati dalla classe ControllerApp
  * @author Elisa Pace
@@ -49,7 +53,9 @@ public class EventServiceImpl implements EventService {
 		return giusti;
 		
 	}
-	/*public JSONArray StatsReg() {
+	@SuppressWarnings("unchecked")
+	public JSONArray StatsRegion() {
+		JSONArray sr=new JSONArray();
 		Vector<String> regione= new Vector<>();
 		regione.add("AB");
 		regione.add("QC");
@@ -61,12 +67,15 @@ public class EventServiceImpl implements EventService {
 		
 		for(String s:regione) {
 			event.EventiInfo(s);
-			
+			Stats statistica=new StasReg(event.getStrutturaDati(),s);
+			sr.add(statistica.getJSONObject());
+			event.clear();
 		}
+		return sr;
 		
 		
 		
 		
-	}*/
+	}
 
 }
