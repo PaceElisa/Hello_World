@@ -20,7 +20,7 @@ public abstract class Stats {
 	
 	
 	
-	public Stats(Vector<Eventi> eventi, String parametro) {
+	public Stats(Vector<Eventi> eventi) {
 		super();
 		this.eventi = eventi;
 		
