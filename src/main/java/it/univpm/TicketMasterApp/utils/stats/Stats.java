@@ -16,7 +16,7 @@ import it.univpm.TicketMasterApp.model.Eventi;
  */
 public abstract class Stats {
 	
-	private Vector<Eventi> eventi=new Vector<>();
+	 Vector<Eventi> eventi=new Vector<>();
 	
 	
 	
