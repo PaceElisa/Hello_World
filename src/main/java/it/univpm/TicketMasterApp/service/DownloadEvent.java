@@ -111,7 +111,7 @@ public class DownloadEvent {
 			String nome=(String) n_eventi.get("name");
 			String url=(String) n_eventi.get("url");
 			String descrizione=(String) n_eventi.get("description");
-			if(descrizione.isEmpty())
+			if(descrizione==null)
 				descrizione="Non specificata...";
 			
 			String regione=Associa(stateCode);
@@ -145,9 +145,9 @@ public class DownloadEvent {
 		
 			
 			if(promoters == null) {
-				String id_promoters = null;
-		        String nome_promoters = null;             
-		        String promoters_descr = null;
+				String id_promoters ="";
+		        String nome_promoters = "";             
+		        String promoters_descr = "";
 		        p=new Promoter(id_promoters, nome_promoters, promoters_descr);
 		        listaprom.add(p);
 			} else {
@@ -156,7 +156,7 @@ public class DownloadEvent {
 					String id_promoters = (String) op.get("id");
 			        String nome_promoters = (String) op.get("name");             
 			        String promoters_descr = (String) op.get("description");
-			        if(promoters_descr.isEmpty())
+			        if(promoters_descr==null)
 			        	promoters_descr="Non specificata";
 			        p=new Promoter(id_promoters, nome_promoters, promoters_descr);
 			        listaprom.add(p);
