@@ -15,7 +15,7 @@ import it.univpm.TicketMasterApp.model.Promoter;
  * @author Marco Vassallo
  *
  */
-@Service
+
 public interface EventService {
 	
 	public  abstract Vector<Promoter> getPromoter(String stateCode) throws WrongStateCodeException, NoPromoterException;
