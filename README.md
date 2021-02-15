@@ -2,7 +2,7 @@
 
 ## Scaletta
 1. [Introduzione](#Introduzione)
-2. Diagrammi [UML](#Diagrammi UML)
+2. [UML](#UML)
 3. [Rotte](#Rotte)
 4. [Test](#Test)
 5. [Autori](#Autori)
@@ -18,7 +18,7 @@ L'utente può scegliere tra gli eventi che si svolgeranno nelle seguenti provinc
 4. Quebec
 5. Nuovo Brunswick
 
-## Diagrammi UML
+## UML
 #### Diagramma dei casi d'uso
 ![UML Diagramma dei casi d'uso](https://user-images.githubusercontent.com/77582844/107976917-989da300-6fba-11eb-931b-a115e03b0430.PNG)
 
@@ -31,3 +31,10 @@ L'utente può scegliere tra gli eventi che si svolgeranno nelle seguenti provinc
 
 ###### /StatsPromoter
 ![Diagramma delle sequenze Stats promoter](https://user-images.githubusercontent.com/77582844/107978493-25e1f700-6fbd-11eb-8b2a-84ebfc8978ba.PNG)
+
+## Rotte
+N° | Tipo | Rotta | Descrizione
+----- | ------------ | -------------------- | ----------------------
+[1](#1) | ` GET ` | `/Promoter` | *restituisce un JSONArray composto da molti JSONObject al cui interno viene specificato: 1. ID; 2. nome; 3. descrizione del promoter. *
+[2](#2) | ` GET ` | `/statsReg` | *restituisce un JSONArray con all'interno molti JSONObject che forniscono: 1. le statistiche della regione che ospita l'evento; 2. il num totale di promoter che sponsorizzano tale evento; 3. il numero totale di eventi mensili in quella data regione.*
+[3](#3) | ` GET ` | `/statsProm` | *restituisce un JSONAarry che contiene dei JSONObject che contengono: 1.il numero totale di eventi; 2. il numero totale di eventi per genere che sponsorizza il promoter; 3. il numero di stati in cui il promoter sponsorizza l'evento.*
