@@ -17,6 +17,7 @@ import it.univpm.TicketMasterApp.model.Promoter;
 public class EventServiceImpl implements EventService {
 	Vector<Promoter> giusti= new Vector<>();
 	
+	public EventServiceImpl() {}	
 	public Vector<Promoter> getPromoter(String stateCode) throws WrongStateCodeException, NoPromoterException{
 		
 		//giusti=null;
