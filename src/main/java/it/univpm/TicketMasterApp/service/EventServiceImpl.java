@@ -15,11 +15,11 @@ import it.univpm.TicketMasterApp.model.Promoter;
  *
  */
 public class EventServiceImpl implements EventService {
+	Vector<Promoter> giusti= new Vector<>();
 	
-	@SuppressWarnings("null")
 	public Vector<Promoter> getPromoter(String stateCode) throws WrongStateCodeException, NoPromoterException{
-		Vector<Promoter> giusti= new Vector<>();
-		giusti=null;
+		
+		//giusti=null;
 		DownloadEvent e= new DownloadEvent();
 		
 		if(e.Associa(stateCode)==null) throw new WrongStateCodeException();
