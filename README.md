@@ -19,5 +19,11 @@ L'utente può scegliere tra gli eventi che si svolgeranno nelle seguenti provinc
 5. Nuovo Brunswick
 
 ## Diagrammi UML
-###### Diagramma dei casi d'uso
+#### Diagramma dei casi d'uso
 ![UML Diagramma dei casi d'uso](https://user-images.githubusercontent.com/77582844/107976917-989da300-6fba-11eb-931b-a115e03b0430.PNG)
+
+#### Diagramma delle sequenze
+###### /Promoter
+![Diagramma delle sequenze Promoter](https://user-images.githubusercontent.com/77582844/107978198-a94f1880-6fbc-11eb-9858-542e1fbf18f1.PNG)
+
+###### /StatsRegion
