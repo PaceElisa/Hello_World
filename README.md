@@ -20,3 +20,4 @@ L'utente può scegliere tra gli eventi che si svolgeranno nelle seguenti provinc
 
 ## Diagrammi UML
 ###### Diagramma dei casi d'uso
+![UML Diagramma dei casi d'uso](https://user-images.githubusercontent.com/77582844/107976917-989da300-6fba-11eb-931b-a115e03b0430.PNG)
