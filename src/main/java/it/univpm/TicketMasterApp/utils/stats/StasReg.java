@@ -4,6 +4,7 @@
 package it.univpm.TicketMasterApp.utils.stats;
 
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Vector;
 
 import org.json.simple.JSONObject;
@@ -17,6 +18,7 @@ import it.univpm.TicketMasterApp.model.Promoter;
  *
  */
 public class StasReg extends Stats {
+	private long periodo;
 	
 /**
  * Costruttore
@@ -25,8 +27,14 @@ public class StasReg extends Stats {
  */
 	public StasReg(Vector<Eventi> eventi,String parametro) {
 		super(eventi, parametro);
-		
+		periodo=1;
 	}
+	
+	public StasReg(Vector<Eventi> eventi,String parametro, long periodo) {
+		super(eventi, parametro);
+		this.periodo=periodo;
+	}
+	
 	/**Metodo che calcola il numero totale di promoter che sponsorizzano eventi in quella regione
 	 * @see Promoter#getID()
 	 * @see Promoter#equals(Object)
@@ -75,9 +83,54 @@ public class StasReg extends Stats {
 		return generi;
 		
 	}
+	/**
+	 * @return un JSONObject con dentroil numero minim, massimo e medio di eventi mensili nell'anno corrente
+	 */
+	@SuppressWarnings("unchecked")
 	public JSONObject CalcoloEvento() {
+		JSONObject event_men= new JSONObject();
+		//operazioni che serve per accertarsi che gli eventi che si analizzano siano dell'anno corrente
 		LocalDate oggi=LocalDate.now();
-	return null;	
+		String anno_prossimo=Integer.toString(oggi.plusYears(1).getYear());
+		String primo_giorno_anno= anno_prossimo+"-01-01";
+		LocalDate fine_anno= LocalDate.parse(primo_giorno_anno);
+		int gen=0, feb=0, marz=0,apr=0,magg=0,giu=0,lu=0,ago=0,sett=0, ott=0,nov=0, dic=0;
+		int min=1000,max=0,med=0, tot=0;
+		Vector<Integer> mesi=new Vector<>();
+		
+		for(Eventi e: super.eventi) {
+			LocalDate data_evento= LocalDate.parse(e.getData());
+			if(data_evento.isBefore(fine_anno)) {// se la data che analizzo è prima del nuovo anno
+				switch(data_evento.getMonthValue()) {
+				
+				case 1:mesi.set(0, gen++) ;break;
+				case 2: mesi.set(1, feb++);break;
+				case 3: mesi.set(2, marz++);break;
+				case 4:mesi.set(3,  apr++);break;
+				case 5:mesi.set(4,  magg++);break;
+				case 6: mesi.set(5,  giu++);break;
+				case 7:mesi.set(6,  lu++);break;
+				case 8:mesi.set(7,  ago++);break;
+				case 9: mesi.set(8,  sett++);break;
+				case 10:mesi.set(9,  ott++);break;
+				case 11:mesi.set(10,  nov++);break;
+				case 12:mesi.set(11,  dic++);break;
+				}
+				
+				
+			}
+		}
+		for(int cont:mesi) {
+			if(cont>max) max=cont;
+			if(cont<min) min=cont;
+			 tot +=cont;
+		}
+		med= tot/mesi.size();
+		event_men.put("max", max);
+		event_men.put("min", min);
+		event_men.put("media", med);
+		
+	return event_men;	
 	}
 	/**
 	 * Metodo che compone il mio JSONObject, relativo alle staistiche di una regione 
