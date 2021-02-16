@@ -43,9 +43,9 @@ N° | Tipo | Rotta | Descrizione
 #### 1.Modello
  ` ` `
 {
-    "id": "653",
-    "nome": "LIVE NATION MUSIC",
-    "descrizione": "LIVE NATION MUSIC / NTL / USA"
+  "id": "653",
+  "nome": "LIVE NATION MUSIC",
+  "descrizione": "LIVE NATION MUSIC / NTL / USA"
 }
  ` ` `
 dove:
