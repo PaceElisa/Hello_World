@@ -30,7 +30,7 @@ L'utente può scegliere tra gli eventi che si svolgeranno nelle seguenti provinc
 ![Diagramma delle sequenze statsReg](https://user-images.githubusercontent.com/77582844/108043947-f88b5c80-7041-11eb-8a6f-85c11e561fb1.PNG)
 
 ###### /StatsPromoter
-![Diagramma delle sequenze statsPromoter](https://user-images.githubusercontent.com/77582844/107984296-ee2c7c80-6fc7-11eb-9927-80136499f611.PNG)
+![Diagramma delle sequenze statsPromoter](https://user-images.githubusercontent.com/77582844/108044217-47d18d00-7042-11eb-86bc-cb22962121e5.PNG)
 
 ## Rotte
 N° | Tipo | Rotta | Descrizione
