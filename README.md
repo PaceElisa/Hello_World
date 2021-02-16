@@ -39,6 +39,22 @@ N° | Tipo | Rotta | Descrizione
 [2](#2) | ` GET ` | `/statsReg` | *restituisce un JSONArray con all'interno molti JSONObject che forniscono: 1. le statistiche della regione che ospita l'evento; 2. il num totale di promoter che sponsorizzano tale evento; 3. il numero totale di eventi mensili in quella data regione.*
 [3](#3) | ` GET ` | `/statsProm` | *restituisce un JSONAarry che contiene dei JSONObject che contengono: 1.il numero totale di eventi; 2. il numero totale di eventi per genere che sponsorizza il promoter; 3. il numero di stati in cui il promoter sponsorizza l'evento.*
 
+### GET /Promoter
+#### 1.Modello
+'''
+{
+    "id": "653",
+    "nome": "LIVE NATION MUSIC",
+    "descrizione": "LIVE NATION MUSIC / NTL / USA"
+}
+'''
+dove:
+1. "id" : id del del promoter che sponsorizza l'evento
+2. "nome" : nome del promoter
+3. "descrizione" : restituisce le informazioni più importanti del promoter
+
+#### Risultato chiamata su postman
+
 ## Autori
 Il progetto è stato realizzato da:
 1. Elisa Pace
