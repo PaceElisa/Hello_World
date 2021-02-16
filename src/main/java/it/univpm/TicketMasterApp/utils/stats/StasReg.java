@@ -83,7 +83,8 @@ public class StasReg extends Stats {
 		return generi;
 		
 	}
-	/**
+	/**Metodo che mi calcola il minimo, massimo e la media di eventi in un mese, nell'anno corrente
+	 * @see Eventi#getData()
 	 * @return un JSONObject con dentroil numero minim, massimo e medio di eventi mensili nell'anno corrente
 	 */
 	@SuppressWarnings("unchecked")
@@ -95,7 +96,7 @@ public class StasReg extends Stats {
 		String primo_giorno_anno= anno_prossimo+"-01-01";
 		LocalDate fine_anno= LocalDate.parse(primo_giorno_anno);
 		int gen=0, feb=0, marz=0,apr=0,magg=0,giu=0,lu=0,ago=0,sett=0, ott=0,nov=0, dic=0;
-		int min=1000,max=0,med=0, tot=0;
+		int min=1000,max=0,med=0;
 		Vector<Integer> mesi=new Vector<>();
 		
 		for(Eventi e: super.eventi) {
@@ -123,9 +124,9 @@ public class StasReg extends Stats {
 		for(int cont:mesi) {
 			if(cont>max) max=cont;
 			if(cont<min) min=cont;
-			 tot +=cont;
+			 
 		}
-		med= tot/mesi.size();
+		med= (max+min)/2;
 		event_men.put("max", max);
 		event_men.put("min", min);
 		event_men.put("media", med);
