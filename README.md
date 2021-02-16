@@ -49,11 +49,12 @@ N° | Tipo | Rotta | Descrizione
     } 
 ```
 dove:
-1. "id" : id del del promoter che sponsorizza l'evento
+1. "id" : id del promoter che sponsorizza l'evento
 2. "nome" : nome del promoter
 3. "descrizione" : restituisce le informazioni più importanti del promoter
 
 #### Risultato chiamata su postman
+![Rotta Promoter (1)](https://user-images.githubusercontent.com/77582844/108105317-c4895900-708c-11eb-99e1-fb7b2ef02cd4.png)
 
 ## Autori
 Il progetto è stato realizzato da:
