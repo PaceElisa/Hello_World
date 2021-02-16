@@ -39,8 +39,8 @@ N° | Tipo | Rotta | Descrizione
 [2](#2) | ` GET ` | `/statsReg` | *restituisce un JSONArray con all'interno molti JSONObject che forniscono: 1. le statistiche della regione che ospita l'evento; 2. il num totale di promoter che sponsorizzano tale evento; 3. il numero totale di eventi mensili in quella data regione.*
 [3](#3) | ` GET ` | `/statsProm` | *restituisce un JSONAarry che contiene dei JSONObject che contengono: 1.il numero totale di eventi; 2. il numero totale di eventi per genere che sponsorizza il promoter; 3. il numero di stati in cui il promoter sponsorizza l'evento.*
 
-### GET /Promoter
-#### 1.Modello
+### 1.GET /Promoter
+#### Modello
 ```
 {
       "id": "653"
@@ -49,9 +49,9 @@ N° | Tipo | Rotta | Descrizione
     } 
 ```
 dove:
-1. "id" : id del promoter che sponsorizza l'evento
-2. "nome" : nome del promoter
-3. "descrizione" : restituisce le informazioni più importanti del promoter
+1. **"id"** : id del promoter che sponsorizza l'evento
+2. **"nome"** : nome del promoter
+3. **"descrizione"** : restituisce le informazioni più importanti del promoter
 
 #### Risultato chiamata su postman
 ![Rotta Promoter (1)](https://user-images.githubusercontent.com/77582844/108105317-c4895900-708c-11eb-99e1-fb7b2ef02cd4.png)
