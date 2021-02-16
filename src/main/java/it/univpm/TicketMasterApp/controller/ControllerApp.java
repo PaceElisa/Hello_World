@@ -65,7 +65,9 @@ public class ControllerApp {
 	@PostMapping(value="statsProm")
 	public ResponseEntity<Object> getStatsPromoter(@RequestBody JSONObject body) throws NoBodyException, WrongIDExceotion
 	{
+		if(body.isEmpty()) throw new NoBodyException("BodyErrorStats");
 		Vector<String> id_promoter=new Vector<String>(body.size());
+		
 		JSONArray vector=(JSONArray)body.get("promoter");
 		
 		for(Object o: vector) {
@@ -73,12 +75,9 @@ public class ControllerApp {
 			id_promoter.add((String) object.get("ID"));
 			}
 		return new ResponseEntity<>(e.StatsPromoter(id_promoter),HttpStatus.OK);
-	}
+}
 	
-	@ExceptionHandler(NoBodyException.class)
-	public ResponseEntity<Object> handleIOException(NoBodyException err){
-		return new ResponseEntity<> (err.BodyError(),HttpStatus.BAD_REQUEST);
-	}
+	
 	@ExceptionHandler(WrongIDExceotion.class)
 	public ResponseEntity<Object> handleIOException(WrongIDExceotion err){
 		return new ResponseEntity<> (err.IDError(),HttpStatus.BAD_REQUEST);
