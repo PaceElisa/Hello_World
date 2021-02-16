@@ -82,7 +82,8 @@ public class EventServiceImpl implements EventService {
 		//per ogni elemnto di regione scarico i dati relativi ad esso e lo passo come parametri al costruttore della classe statistica
 		for(String s:regione) {
 			event.EventiInfo(s);
-			Stats statistica=new StasReg(event.getStrutturaDati(),s);
+			
+			Stats statistica=new StasReg(event.getStrutturaDati(),event.Associa(s));
 			sr.add(statistica.getJSONObject());
 			//dopo ogni operazione ho la necessita di cancellare il contenuto di event per permettere alla mia struttura dati di contenere
 			//solo informazioni di quella regione
@@ -90,9 +91,12 @@ public class EventServiceImpl implements EventService {
 		}
 		return sr;
 		
+	}
+	
+	public JSONArray StatsPromoter(Vector<String> id_prom) {
 		
-		
-		
+		JSONArray proms=new JSONArray();
+		return null;
 	}
 
 }
