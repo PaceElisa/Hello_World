@@ -41,13 +41,13 @@ N° | Tipo | Rotta | Descrizione
 
 ### GET /Promoter
 #### 1.Modello
-'''
+ ` ` `
 {
     "id": "653",
     "nome": "LIVE NATION MUSIC",
     "descrizione": "LIVE NATION MUSIC / NTL / USA"
 }
-'''
+ ` ` `
 dove:
 1. "id" : id del del promoter che sponsorizza l'evento
 2. "nome" : nome del promoter
