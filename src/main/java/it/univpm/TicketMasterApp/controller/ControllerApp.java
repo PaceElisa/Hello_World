@@ -3,6 +3,7 @@
  */
 package it.univpm.TicketMasterApp.controller;
 
+import it.univpm.TicketMasterApp.exception.EmptyIDException;
 import it.univpm.TicketMasterApp.exception.NoBodyException;
 
 //import org.springframework.web.bind.annotation.RestController;
@@ -63,7 +64,7 @@ public class ControllerApp {
 	}
 	
 	@PostMapping(value="statsProm")
-	public ResponseEntity<Object> getStatsPromoter(@RequestBody JSONObject body) throws NoBodyException, WrongIDExceotion
+	public ResponseEntity<Object> getStatsPromoter(@RequestBody JSONObject body) throws NoBodyException, WrongIDExceotion,EmptyIDException
 	{
 		if(body.isEmpty()) throw new NoBodyException("BodyErrorStats");
 		Vector<String> id_promoter=new Vector<String>(body.size());
@@ -81,6 +82,15 @@ public class ControllerApp {
 	@ExceptionHandler(WrongIDExceotion.class)
 	public ResponseEntity<Object> handleIOException(WrongIDExceotion err){
 		return new ResponseEntity<> (err.IDError(),HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(EmptyIDException.class)
+	public ResponseEntity<Object> handleIOException(EmptyIDException err){
+		return new ResponseEntity<> (err.EmptyIDError(),HttpStatus.BAD_REQUEST);
+	}
+	@ExceptionHandler(NoBodyException.class)
+	public ResponseEntity<Object> handleIOException(NoBodyException err){
+		return new ResponseEntity<> (err.BodyErrorStats(),HttpStatus.BAD_REQUEST);
 	}
 		
 	
