@@ -46,7 +46,7 @@ N° | Tipo | Rotta | Descrizione
 [2](#2) | ` GET ` | `/statsReg` | *restituisce un JSONArray con all'interno molti JSONObject che forniscono: 1. le statistiche della regione che ospita l'evento; 2. il num totale di promoter che sponsorizzano tale evento; 3. il numero totale di eventi mensili in quella data regione.*
 [3](#3) | ` GET ` | `/statsProm` | *restituisce un JSONAarry che contiene dei JSONObject che contengono: 1.il numero totale di eventi; 2. il numero totale di eventi per genere che sponsorizza il promoter; 3. il numero di stati in cui il promoter sponsorizza l'evento.*
 
-### 1.GET /Promoter[]()
+### 1. GET /Promoter
 #### Modello
 ```
 {
@@ -56,14 +56,14 @@ N° | Tipo | Rotta | Descrizione
     } 
 ```
 dove:
-1. **"id"** : id del promoter che sponsorizza l'evento
-2. **"nome"** : nome del promoter
-3. **"descrizione"** : restituisce alcune informazioni riguardo al promoter
+1. **"id"** : id del promoter che sponsorizza l'evento;
+2. **"nome"** : nome del promoter;
+3. **"descrizione"** : restituisce alcune informazioni riguardo al promoter.
 
 #### Risultato chiamata su postman
 ![Rotta Promoter (1)](https://user-images.githubusercontent.com/77582844/108105317-c4895900-708c-11eb-99e1-fb7b2ef02cd4.png)
 
-### 2. GET / statsReg
+### 2. GET /statsReg
 #### Modello
     {
         "Regione": "Alberta",
@@ -82,7 +82,31 @@ dove:
          },
         "Tot_Prom": 31
     }
+dove :
+1. **"Regione"** : restituisce il nome della regione in cui si svolgono gli eventi;
+2. **"Eventi mensili"** : ci restituisce il numero di eventi che si svolgeranno in un determinato periodo ti tempo a scelta dell'utente.
+   In particolare "media" non è altro che la media totale degli eventi che si possono svolgere in un mese. "min" indica il numero minimo di eventi che si ha in un mese. "max" il    numero massimo di eventi
+3. **"Tot_Prom_Genere"** : individua i vari generi degli eventi che si tengono in una data regione e di questi ne fa una conta. Ad esempio, "Music" ha undici eventi di questo genere, e così via con gli altri;
+4. **"Tot_Prom"** : restituisce il numero totale di eventi di quella regione.
 
+### 3. GET /statsProm
+#### Modello
+```
+{
+       "promoter": [
+        {
+            "ID": "850"
+        },
+        {
+            "ID": "653"
+        },
+        {
+            "ID": "494"
+        }
+    ]
+}
+```
+in cui gli ID che sono presenti nel JSON sopra riportati si riferisco ai promoter che organizzano un dato evento
 ## Autori
 Il progetto è stato realizzato da:
 1. Elisa Pace
