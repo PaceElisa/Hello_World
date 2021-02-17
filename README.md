@@ -89,6 +89,9 @@ dove :
 3. **"Tot_Prom_Genere"** : individua i vari generi degli eventi che si tengono in una data regione e di questi ne fa una conta. Ad esempio, "Music" ha undici eventi di questo genere, e così via con gli altri;
 4. **"Tot_Prom"** : restituisce il numero totale di eventi di quella regione.
 
+#### Risultato chiamata su postman
+![response rotta Stats reg](https://user-images.githubusercontent.com/77582844/108222568-328b5a00-7139-11eb-882e-e800ce67f54a.png)
+
 ### 3. GET /statsProm
 #### Modello
 ```
