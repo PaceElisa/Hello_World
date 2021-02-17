@@ -60,16 +60,18 @@ public class ControllerApp {
 	@RequestMapping(value="statsReg")
 	public ResponseEntity<Object> getStasRegion()
 	{
-		return new ResponseEntity<>(e.StatsRegion().toString(),HttpStatus.OK);
+		return new ResponseEntity<>(e.StatsRegion(),HttpStatus.OK);
 	}
 	
 	@PostMapping(value="statsProm")
-	public ResponseEntity<Object> getStatsPromoter(@RequestBody JSONObject body) throws NoBodyException, WrongIDExceotion,EmptyIDException
+	public ResponseEntity<Object> getStatsPromoter(@RequestBody String body) throws NoBodyException, WrongIDExceotion,EmptyIDException
 	{
-		if(body.isEmpty()) throw new NoBodyException("BodyErrorStats");
-		Vector<String> id_promoter=new Vector<String>(body.size());
+		JSONObject obj=(JSONObject) JSONValue.parse(body);
+		JSONArray vector= new JSONArray();
+		if(obj.isEmpty()||obj==null) throw new NoBodyException("BodyErrorStats");
+		Vector<String> id_promoter=new Vector<String>();
 		
-		JSONArray vector=(JSONArray)body.get("promoter");
+		 vector=(JSONArray)obj.get("promoter");
 		
 		for(Object o: vector) {
 			JSONObject object=(JSONObject)o;
