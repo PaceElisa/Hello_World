@@ -63,6 +63,26 @@ dove:
 #### Risultato chiamata su postman
 ![Rotta Promoter (1)](https://user-images.githubusercontent.com/77582844/108105317-c4895900-708c-11eb-99e1-fb7b2ef02cd4.png)
 
+### 2. GET / statsReg
+#### Modello
+    {
+        "Regione": "Alberta",
+        "Eventi_Mensili": {
+            "min": 13,
+            "max": 45,
+            "media": 29
+        },
+        "Tot_Prom_Genere": {
+            "Music": 11,
+            "Sport": 5,
+            "Art & Theatre": 7,
+            "Film": 2,
+            "Altro": 6
+
+         },
+        "Tot_Prom": 31
+    }
+
 ## Autori
 Il progetto è stato realizzato da:
 1. Elisa Pace
