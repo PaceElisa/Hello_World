@@ -19,6 +19,8 @@ import it.univpm.TicketMasterApp.model.Promoter;
 public class StatsProm extends Stats {
 	//Vettore che contiene solo gli eventi relativi al promoter che ho poassato 
 	Vector<Eventi> eve_p=new Vector<>();
+	String promoterID;
+	String promotername;
 
 	/** costruttore
 	 * @param eventi  contiene tutta la mia struttura dati
@@ -32,6 +34,9 @@ public class StatsProm extends Stats {
 				if(p.getID().equals(parametro))
 					eve_p.add(ev);
 			}
+			promoterID=parametro;
+			
+			
 			
 		}
 	}
@@ -42,13 +47,7 @@ public class StatsProm extends Stats {
 
 	@Override
 	public int CalcoloTot() {
-		int cont=0;
-		
-		for(Eventi e: eve_p) {
-			cont++;		
-			}
-			
-		
+		int cont=eve_p.size();
 		return cont;
 	}
 
@@ -97,10 +96,13 @@ public class StatsProm extends Stats {
 		//fisso un elemento del vettore eve_p e ricerco sempre su di esso gli eventi con lo stesso id 
 		
 		while(ite.hasNext()) {
+			Eventi eve=new Eventi();
+			eve=ite.next();
+			if(eve!=null) {
 			int cont=1;
 			for(Eventi e: eve_p) {
 				// se si tratta dell0 stesso evento e quest'ultimo ha uno statecode diverso, allora controllo che non l'abbia già contanto e poi incremento contatore
-				if(e.getID().equals(ite.next().getID()) && !(e.getStateCode().equals(ite.next().getStateCode()))) {
+				if(e.getID().equals(eve.getID()) && !(e.getStateCode().equals(eve.getStateCode()))) {
 					if(!(giusti.contains(e))) {
 						giusti.add(e);
 						cont++;
@@ -108,9 +110,10 @@ public class StatsProm extends Stats {
 					}
 				}
 			}
-			n_stati.put(ite.next().getName(),cont );
+			n_stati.put(eve.getName(),cont );
 			//risetto il contatore pre il prossimo elemento ite
 			cont=1;
+			}
 		}
 		return n_stati;
 	}
@@ -123,7 +126,7 @@ public class StatsProm extends Stats {
 	@SuppressWarnings("unchecked")
 	public JSONObject getJSONObject() {
 		 JSONObject promoter= new JSONObject();
-		 promoter.put("ID_Promoter", super.parametro);
+		 promoter.put("ID_Promoter", promoterID);
 		 promoter.put("Tot_Eventi", CalcoloTot());
 		 promoter.put("Tot_Eventi_Genere", CalcoloGenere());
 		 promoter.put("Tot_Stati_Evento",CalcoloEvento());
