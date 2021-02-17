@@ -29,6 +29,10 @@ L'utente può scegliere tra gli eventi che si svolgeranno nelle seguenti provinc
 ###### Package service
 ![Diagramma delle classi package service](https://user-images.githubusercontent.com/77582844/108220942-8d23b680-7137-11eb-84e4-38e09c9a47c4.PNG)
 
+###### package utils-stats
+![Diagramma delle classi package utils-stats](https://user-images.githubusercontent.com/77582844/108226430-3325ef80-713d-11eb-96d5-20c060655883.PNG)
+  **Nota**: il package utils contiene anche il package stats.
+
 #### Diagramma delle sequenze
 ###### /Promoter
 ![Diagramma delle sequenze Promoter](https://user-images.githubusercontent.com/77582844/107984222-c1786500-6fc7-11eb-9a53-2391aa6521f3.PNG)
