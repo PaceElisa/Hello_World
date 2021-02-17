@@ -22,6 +22,10 @@ L'utente può scegliere tra gli eventi che si svolgeranno nelle seguenti provinc
 #### Diagramma dei casi d'uso
 ![UML Diagramma dei casi d'uso](https://user-images.githubusercontent.com/77582844/107976917-989da300-6fba-11eb-931b-a115e03b0430.PNG)
 
+#### Diagramma delle classi
+###### Package service
+![Diagramma delle classi package service](https://user-images.githubusercontent.com/77582844/108177978-2df87e80-7104-11eb-8ac6-bc80cbbfa5b0.PNG)
+
 #### Diagramma delle sequenze
 ###### /Promoter
 ![Diagramma delle sequenze Promoter](https://user-images.githubusercontent.com/77582844/107984222-c1786500-6fc7-11eb-9a53-2391aa6521f3.PNG)
