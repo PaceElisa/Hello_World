@@ -219,4 +219,51 @@ public class Eventi {
 		return "Eventi [ID=" + ID + ", name=" + Name + ", URL=" + URL + ", descrizione=" + Descrizione + ", data="
 				+ Data + ", genere=" + genere + ", promoters=" + toStringpromoters() + "]";
 	}
+
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	Eventi other = (Eventi) obj;
+	if (Data == null) {
+		if (other.Data != null)
+			return false;
+	} else if (!Data.equals(other.Data))
+		return false;
+	if (Descrizione == null) {
+		if (other.Descrizione != null)
+			return false;
+	} else if (!Descrizione.equals(other.Descrizione))
+		return false;
+	if (ID == null) {
+		if (other.ID != null)
+			return false;
+	} else if (!ID.equals(other.ID))
+		return false;
+	if (Name == null) {
+		if (other.Name != null)
+			return false;
+	} else if (!Name.equals(other.Name))
+		return false;
+	if (Regione == null) {
+		if (other.Regione != null)
+			return false;
+	} else if (!Regione.equals(other.Regione))
+		return false;
+	if (URL == null) {
+		if (other.URL != null)
+			return false;
+	} else if (!URL.equals(other.URL))
+		return false;
+	if (stateCode == null) {
+		if (other.stateCode != null)
+			return false;
+	} else if (!stateCode.equals(other.stateCode))
+		return false;
+	return true;
+}
 }
