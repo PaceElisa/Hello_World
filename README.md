@@ -114,6 +114,9 @@ dove :
 }
 ```
 in cui gli ID che sono presenti nel JSON sopra riportati si riferisco ai promoter che organizzano un dato evento
+#### Risultato chiamata su postman
+![Rotta statsProm](https://user-images.githubusercontent.com/77582844/108227543-4ab1a800-713e-11eb-9cae-b064e829e0c0.png)
+
 ## Autori
 Il progetto è stato realizzato da:
 1. Elisa Pace
