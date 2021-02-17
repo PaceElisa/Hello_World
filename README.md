@@ -23,6 +23,9 @@ L'utente può scegliere tra gli eventi che si svolgeranno nelle seguenti provinc
 ![UML Diagramma dei casi d'uso](https://user-images.githubusercontent.com/77582844/107976917-989da300-6fba-11eb-931b-a115e03b0430.PNG)
 
 #### Diagramma delle classi
+###### Package model
+![Diagramma delle classi package model](https://user-images.githubusercontent.com/77582844/108178238-7d3eaf00-7104-11eb-963c-0eb5ea326fef.PNG)
+
 ###### Package service
 ![Diagramma delle classi package service](https://user-images.githubusercontent.com/77582844/108177978-2df87e80-7104-11eb-8ac6-bc80cbbfa5b0.PNG)
 
@@ -64,3 +67,5 @@ dove:
 Il progetto è stato realizzato da:
 1. Elisa Pace
 2. Marco Vassallo
+
+entrambi hanno contribuito al 50% nella realizzazione di questo progetto
