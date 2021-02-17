@@ -27,7 +27,7 @@ L'utente può scegliere tra gli eventi che si svolgeranno nelle seguenti provinc
 ![Diagramma delle classi package model](https://user-images.githubusercontent.com/77582844/108220785-65cce980-7137-11eb-9bdf-795e65d68a49.PNG)
 
 ###### Package service
-![Diagramma delle classi package service](https://user-images.githubusercontent.com/77582844/108177978-2df87e80-7104-11eb-8ac6-bc80cbbfa5b0.PNG)
+![Diagramma delle classi package service](https://user-images.githubusercontent.com/77582844/108220942-8d23b680-7137-11eb-84e4-38e09c9a47c4.PNG)
 
 #### Diagramma delle sequenze
 ###### /Promoter
