@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.*;
 //import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
 
-/**
+/**Metodo che gestisce le chiamate alle relative rotte
  * @author Marco Vassallo
  * @author Elisa Pace
  *
@@ -68,7 +68,7 @@ public class ControllerApp {
 	{
 		JSONObject obj=(JSONObject) JSONValue.parse(body);
 		JSONArray vector= new JSONArray();
-		if(obj.isEmpty()||obj==null) throw new NoBodyException("BodyErrorStats");
+		if(obj.isEmpty()) throw new NoBodyException("BodyErrorStats");
 		Vector<String> id_promoter=new Vector<String>();
 		
 		 vector=(JSONArray)obj.get("promoter");
@@ -94,6 +94,9 @@ public class ControllerApp {
 	public ResponseEntity<Object> handleIOException(NoBodyException err){
 		return new ResponseEntity<> (err.BodyErrorStats(),HttpStatus.BAD_REQUEST);
 	}
+	
+	
+	
 		
 	
 	
