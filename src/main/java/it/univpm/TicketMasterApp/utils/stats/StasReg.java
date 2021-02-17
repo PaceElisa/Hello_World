@@ -11,6 +11,7 @@ import org.json.simple.JSONObject;
 
 import it.univpm.TicketMasterApp.model.Eventi;
 import it.univpm.TicketMasterApp.model.Promoter;
+import it.univpm.TicketMasterApp.service.DownloadEvent;
 
 /**Sottoclasee che calcola la statistiche per ogni regione
  * @author Elisa Pace
@@ -18,7 +19,9 @@ import it.univpm.TicketMasterApp.model.Promoter;
  *
  */
 public class StasReg extends Stats {
-	private long periodo;
+	//private long periodo;
+	public Vector<Eventi> eve_s= new Vector<>();
+	String statecode;
 	
 /**
  * Costruttore
@@ -27,12 +30,19 @@ public class StasReg extends Stats {
  */
 	public StasReg(Vector<Eventi> eventi,String parametro) {
 		super(eventi, parametro);
-		periodo=1;
+		for(Eventi ev: eventi){
+			
+				if(ev.getStateCode().equals(parametro))
+					eve_s.add(ev);
+			}
+		statecode=parametro;
+		
+		//periodo=1;
 	}
 	
 	public StasReg(Vector<Eventi> eventi,String parametro, long periodo) {
 		super(eventi, parametro);
-		this.periodo=periodo;
+		//this.periodo=periodo;
 	}
 	
 	/**Metodo che calcola il numero totale di promoter che sponsorizzano eventi in quella regione
@@ -42,12 +52,21 @@ public class StasReg extends Stats {
 	 */
 	public int CalcoloTot() {
 		int cont=0;
+		Vector<Promoter> giusti= new Vector<>();
 		//esploro il vettore di eventi, al suo interno prendo il vettore dei promoter ed esploro anche quello
-		for(Eventi e: super.eventi) {
+		for(Eventi e: eve_s) {
 			for(Promoter p: e.getPromoters()) {
 				//conto solo i promoter che non sono nulli o che non sono NOT DEFINE con ID "320"
-				if(!(p.getID().equals("") || p.getID().equals("320"))) 
-					cont++;		
+				if(!(p.getID().equals("") || p.getID().equals("320"))) {
+					//Se non ho già aggiunto e contato quel relativo promoter, allora lo faccio, altrimenti se è già presente non lo conto
+					if(!(giusti.contains(p))) {
+						giusti.add(p);
+						cont++;
+						
+					}
+						
+				}
+							
 			}
 			
 		}
@@ -64,7 +83,7 @@ public class StasReg extends Stats {
 		
 		JSONObject generi= new JSONObject();
 		int contMusic=0, contSport=0, contArt=0, contFilm=0, contAltro=0;
-		for(Eventi e:super.eventi) {
+		for(Eventi e:eve_s) {
 			
 			switch(e.getGenere().getName()) {
 			
@@ -97,33 +116,49 @@ public class StasReg extends Stats {
 		LocalDate fine_anno= LocalDate.parse(primo_giorno_anno);
 		int gen=0, feb=0, marz=0,apr=0,magg=0,giu=0,lu=0,ago=0,sett=0, ott=0,nov=0, dic=0;
 		int min=1000,max=0,med=0;
-		Vector<Integer> mesi=new Vector<>();
+		int index=20;
+		Vector<Integer> mesi=new Vector<>(index);
 		
-		for(Eventi e: super.eventi) {
+		
+		for(Eventi e: eve_s) {
 			LocalDate data_evento= LocalDate.parse(e.getData());
 			if(data_evento.isBefore(fine_anno)) {// se la data che analizzo è prima del nuovo anno
 				switch(data_evento.getMonthValue()) {
 				
-				case 1:mesi.set(0, gen++) ;break;
-				case 2: mesi.set(1, feb++);break;
-				case 3: mesi.set(2, marz++);break;
-				case 4:mesi.set(3,  apr++);break;
-				case 5:mesi.set(4,  magg++);break;
-				case 6: mesi.set(5,  giu++);break;
-				case 7:mesi.set(6,  lu++);break;
-				case 8:mesi.set(7,  ago++);break;
-				case 9: mesi.set(8,  sett++);break;
-				case 10:mesi.set(9,  ott++);break;
-				case 11:mesi.set(10,  nov++);break;
-				case 12:mesi.set(11,  dic++);break;
+				case 1: gen++ ;break;
+				case 2:  feb++;break;
+				case 3: marz++;break;
+				case 4:  apr++;break;
+				case 5: magg++;break;
+				case 6:  giu++;break;
+				case 7:lu++;break;
+				case 8:  ago++;break;
+				case 9:   sett++;break;
+				case 10: ott++;break;
+				case 11: nov++;break;
+				case 12:  dic++;break;
 				}
+				mesi.add(gen);
+				mesi.add(feb);
+				mesi.add(marz);
+				mesi.add(apr);
+				mesi.add(magg);
+				mesi.add(giu);
+				mesi.add(lu);
+				mesi.add(ago);
+				mesi.add(sett);
+				mesi.add(ott);
+				mesi.add(nov);
+				mesi.add(dic);
 				
 				
 			}
 		}
 		for(int cont:mesi) {
+			if(cont!=0) {
 			if(cont>max) max=cont;
 			if(cont<min) min=cont;
+					}
 			 
 		}
 		med= (max+min)/2;
@@ -142,11 +177,13 @@ public class StasReg extends Stats {
 	 */
 	@SuppressWarnings("unchecked")
 	public JSONObject getJSONObject() {
+		DownloadEvent st= new DownloadEvent();
 		 JSONObject region= new JSONObject();
-		 region.put("Regione", super.parametro);
+		 region.put("Regione", st.Associa(statecode));
 		 region.put("Tot_Prom", CalcoloTot());
 		 region.put("Tot_Prom_Genere", CalcoloGenere());
 		 region.put("Eventi_Mensili",CalcoloEvento());
+		 eve_s.clear();
 		 return region;
 		
 		 

@@ -19,8 +19,7 @@ import it.univpm.TicketMasterApp.model.Promoter;
 public class StatsProm extends Stats {
 	//Vettore che contiene solo gli eventi relativi al promoter che ho poassato 
 	Vector<Eventi> eve_p=new Vector<>();
-	String promoterID;
-	String promotername;
+	
 
 	/** costruttore
 	 * @param eventi  contiene tutta la mia struttura dati
@@ -34,11 +33,8 @@ public class StatsProm extends Stats {
 				if(p.getID().equals(parametro))
 					eve_p.add(ev);
 			}
-			promoterID=parametro;
 			
-			
-			
-		}
+			}
 	}
 	/**
 	 * Metodo che calcola il totale degli eventi sponsorizzati dal promoter
@@ -126,7 +122,7 @@ public class StatsProm extends Stats {
 	@SuppressWarnings("unchecked")
 	public JSONObject getJSONObject() {
 		 JSONObject promoter= new JSONObject();
-		 promoter.put("ID_Promoter", promoterID);
+		 promoter.put("ID_Promoter", getParametro());
 		 promoter.put("Tot_Eventi", CalcoloTot());
 		 promoter.put("Tot_Eventi_Genere", CalcoloGenere());
 		 promoter.put("Tot_Stati_Evento",CalcoloEvento());

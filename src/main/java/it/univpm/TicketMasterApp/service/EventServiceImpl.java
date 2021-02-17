@@ -3,15 +3,23 @@
  */
 package it.univpm.TicketMasterApp.service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Vector;
 
 import org.json.simple.JSONArray;
 import org.springframework.stereotype.Service;
+
+import it.univpm.TicketMasterApp.exception.EmptyIDException;
+import it.univpm.TicketMasterApp.exception.NoBodyException;
 import it.univpm.TicketMasterApp.exception.NoPromoterException;
+import it.univpm.TicketMasterApp.exception.WrongIDExceotion;
 import it.univpm.TicketMasterApp.exception.WrongStateCodeException;
+import it.univpm.TicketMasterApp.model.Eventi;
 import it.univpm.TicketMasterApp.model.Promoter;
 import it.univpm.TicketMasterApp.utils.stats.StasReg;
 import it.univpm.TicketMasterApp.utils.stats.Stats;
+import it.univpm.TicketMasterApp.utils.stats.StatsProm;
 
 /**Classe che gestisce i metodi chiamati dalla classe ControllerApp
  * @author Elisa Pace
@@ -28,7 +36,7 @@ public class EventServiceImpl implements EventService {
 	public EventServiceImpl() {}
 	
 	/**Metodo che ritorna la lista dei promoter di una regione scelta dall'utente come suggerimento 
-	 * @param stateCode cosice postale della regione di cui si richiede la lista di promoter
+	 * @param stateCode codice postale della regione di cui si richiede la lista di promoter
 	 * @see DownloadEvent#Associa(String)
 	 * @see DownloadEvent#EventiInfo(String)
 	 * @see DownloadEvent#getListaProm()
@@ -69,34 +77,88 @@ public class EventServiceImpl implements EventService {
 	 */
 	@SuppressWarnings("unchecked")
 	public JSONArray StatsRegion() {
-		JSONArray sr=new JSONArray();
-		//definisco un vettore di String con gli stateCode delle regioni che ho deciso di analizzare
-		Vector<String> regione= new Vector<>();
-		regione.add("AB");
-		regione.add("QC");
-		regione.add("MB");
-		regione.add("NB");
-		regione.add("SK");
+		ArrayList<String> regioni= new ArrayList<>();
+		regioni.add("AB");
+		regioni.add("QC");
+		regioni.add("MB");
+		regioni.add("NB");
+		regioni.add("SK");
+		Iterator<String> it= regioni.iterator();
 		
+		JSONArray sr=new JSONArray();
 		DownloadEvent event= new DownloadEvent();
-		//per ogni elemnto di regione scarico i dati relativi ad esso e lo passo come parametri al costruttore della classe statistica
-		for(String s:regione) {
-			event.EventiInfo(s);
+		event.EventiInfo("AB");
+		event.EventiInfo("QC");
+		event.EventiInfo("MB");
+		event.EventiInfo("NB");
+		event.EventiInfo("SK");
+		
+		//Vector<Eventi> corretto=new Vector<>();
+		while(it.hasNext()) {
+			//quando it.next() raggiunge la fine del vettore si ferma, senza dare errore
+			String r =it.next();
+			if(r !=null) {
 			
-			Stats statistica=new StasReg(event.getStrutturaDati(),event.Associa(s));
-			sr.add(statistica.getJSONObject());
-			//dopo ogni operazione ho la necessita di cancellare il contenuto di event per permettere alla mia struttura dati di contenere
-			//solo informazioni di quella regione
-			event.clear();
+		//for(Eventi e :event.getStrutturaDati()) {
+			
+		
+			
+			//if(e.getStateCode().equals(r)) 
+					//corretto.add(e);
+			//}
+			
+		        Stats statistica=new StasReg(event.getStrutturaDati(),r);
+				sr.add(statistica.getJSONObject());
+			}
 		}
+			
 		return sr;
 		
 	}
-	
-	public JSONArray StatsPromoter(Vector<String> id_prom) {
-		
+	/**
+	 * Metodo che mi restituisce un jsonarray con le statistiche relative ai promoters
+	 * @param id_prom  vettore di stringhe che contiene tutti gli id_promoter passati al body
+	 * @see DownloadEvent#EventiInfo(String)
+	 * @see DownloadEvent#getListaProm()
+	 * @see DownloadEvent#getStrutturaDati()
+	 * @see Promoter#getID()
+	 * @see Promoter#equals(Object)
+	 * @see StatsProm#getJSONObject()
+	 * @return un Jsonarray con tutte le statistiche di tutti i promoter passati
+	 */
+	@SuppressWarnings("unchecked")
+	public JSONArray StatsPromoter(Vector<String> id_prom) throws EmptyIDException, WrongIDExceotion {
+		Iterator<String> it= id_prom.iterator();
 		JSONArray proms=new JSONArray();
-		return null;
+		
+		DownloadEvent event=new DownloadEvent();
+		event.EventiInfo("AB");
+		event.EventiInfo("QC");
+		event.EventiInfo("MB");
+		event.EventiInfo("NB");
+		event.EventiInfo("SK");
+		// verifico che tutti i campi del vettore id_prom siano non vuoti
+		for(String s:id_prom) {
+		if(s==null) throw new EmptyIDException();
+		}
+		while(it.hasNext()){
+			String pro=it.next();
+			if(pro!=null) {
+			//verifico se gli id_promoter passati nel body esistano
+			boolean test=true;
+			for(Promoter p:event.getListaProm()) {
+				if((p.getID().equals(pro))) test=false;
+			}
+			if(test) throw new WrongIDExceotion();
+			
+			Stats statistica= new StatsProm(event.getStrutturaDati(),(pro));
+			proms.add(statistica.getJSONObject());
+			}
+		}
+		
+		
+		return proms;
 	}
-
 }
+
+
