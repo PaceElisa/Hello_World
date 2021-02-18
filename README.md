@@ -167,10 +167,10 @@ Questa è una chiamata di tipo **POST**, che restituisce statistiche sui promote
 
 I risultato della richiesta stampa:
 
-1.**ID_Promoter**: l'ID che identifica il promoter.
-2.**Tot_Eventi_Genere**: Restituisce il numero totali di eventi suddivisi per genere, che vengono sponsorizzati dal promoter
-3.**Tot_Stati_Evento**: Numero di stati in cui il promoter sponsorizza un determinato evento
-4.**Tot_Eventi**: numero totale di eventi sponsorizzati dal promoter
+1.**ID_Promoter**: l'ID che identifica il promoter.                                                                                         
+2.**Tot_Eventi_Genere**: Restituisce il numero totali di eventi suddivisi per genere, che vengono sponsorizzati dal promoter                                              
+3.**Tot_Stati_Evento**: Numero di stati in cui il promoter sponsorizza un determinato evento                                                                   
+4.**Tot_Eventi**: numero totale di eventi sponsorizzati dal promoter                                                                        
 
 #### Risultato chiamata su postman
 ![Rotta statsProm](https://user-images.githubusercontent.com/77582844/108227543-4ab1a800-713e-11eb-9cae-b064e829e0c0.png)
