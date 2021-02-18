@@ -42,31 +42,69 @@ public class ControllerApp {
 	@Autowired
 	EventService e;
 	
-	
+	/**
+	 * Metodo che lancia una chiamata di tipo GET che ritorna una lisat di promoter relativo alla regione Manitoba(MB)
+	 * se non viene specificato un'altro stateCode dall'utente
+	 * @param stateCode
+	 * @return un JSONArray con tanti JSONObject con id, nome e descrizione del promoter
+	 * @throws NoPromoterException
+	 * @throws WrongStateCodeException
+	 */
 	@GetMapping("/promoter")
 	public ResponseEntity<Object> getpromoter(@RequestParam(name="stateCode", defaultValue= "MB") String stateCode) throws NoPromoterException, WrongStateCodeException
 	{
 		return new ResponseEntity<>(e.getPromoter(stateCode), HttpStatus.OK);
 	}
-	
+	/**
+	 * Metodo che gestisce l'eccezione WrongStateCodeException e manda una risposta di tipo bad_request
+	 * @param err
+	 * @return un messaggio di errore
+	 */
 	@ExceptionHandler(WrongStateCodeException.class)
 	public ResponseEntity<Object> handleIOException(WrongStateCodeException err){
 		return new ResponseEntity<> (err.StateCodeError(),HttpStatus.BAD_REQUEST);
 		
 	}
-	
+	/**
+	 * Metodo che gestisce l'eccezione NoPromoterException e manda una risposta di tipo bad_request
+	 * @param err
+	 * @return un messaggio di errore
+	 */
 	@ExceptionHandler(NoPromoterException.class)
 	public ResponseEntity<Object> handleIOException(NoPromoterException err){
 		return new ResponseEntity<> (err.PromoterError(),HttpStatus.BAD_REQUEST);
 		
 	}
-	
+	/**
+	 * Metodo che lancia una chiamata di tipo Get e restituisce le statistiche per ogni regione
+	 * @return un JSONArray con tanti JSONObject 
+	 */
 	@RequestMapping(value="statsReg")
 	public ResponseEntity<Object> getStasRegion()
 	{
 		return new ResponseEntity<>(e.StatsRegion(),HttpStatus.OK);
 	}
-	
+	/**
+	 * Metodo che lancia una chiamatata di tipo POST a cui viene passato un body tipo questo:
+	 * {
+    "promoter": [
+        {
+            "ID": "850"
+        },
+        {
+            "ID": "653"
+        },
+        {
+            "ID": "494"
+        }
+       ]
+      }
+	 * @param body
+	 * @return un JSONArray con tanti JSONObject che contengono le statistiche relative a uno o più promoter inserito dall'utente
+	 * @throws NoBodyException
+	 * @throws WrongIDExceotion
+	 * @throws EmptyIDException
+	 */
 	@PostMapping(value="statsProm")
 	public ResponseEntity<Object> getStatsPromoter(@RequestBody String body) throws NoBodyException, WrongIDExceotion,EmptyIDException
 	{
@@ -84,21 +122,64 @@ public class ControllerApp {
 		return new ResponseEntity<>(e.StatsPromoter(id_promoter),HttpStatus.OK);
 }
 	
-	
+	/**
+	 * Metodo che gestisce l'eccezione WrongIDException e manda una risposta di tipo bad_request
+	 * @param err
+	 * @return un messaggio di errore
+	 */
 	@ExceptionHandler(WrongIDExceotion.class)
 	public ResponseEntity<Object> handleIOException(WrongIDExceotion err){
 		return new ResponseEntity<> (err.IDError(),HttpStatus.BAD_REQUEST);
 	}
-	
+	/**
+	 * Metodo che gestisce l'eccezione EmptyIDException e manda una risposta di tipo bad_request
+	 * @param err
+	 * @return un messaggio di errore
+	 */
 	@ExceptionHandler(EmptyIDException.class)
 	public ResponseEntity<Object> handleIOException(EmptyIDException err){
 		return new ResponseEntity<> (err.EmptyIDError(),HttpStatus.BAD_REQUEST);
 	}
+	/**
+	 * Metodo che gestisce l'eccezione NoBodyException e manda una risposta di tipo bad_request
+	 * @param err
+	 * @return un messaggio di errore
+	 */
 	@ExceptionHandler(NoBodyException.class)
 	public ResponseEntity<Object> handleIOException(NoBodyException err){
 		return new ResponseEntity<> (err.BodyErrorStats(),HttpStatus.BAD_REQUEST);
 	}
-	
+	/**
+	 * Metodo che  gestisce una chiamat di tipo POST e che filtra le statistiche in base a dei filtri inseriti dall'utente, come:
+	 *   {
+    "regione":[
+        {
+          "stateCode": "AB"
+        },
+        {
+            "stateCode":"QC"
+        }
+    ],
+    "genere":[
+        {
+            "name": "Music"
+        },
+        {
+            "name": "Sport"
+        }
+    ],
+    "periodo": 3,
+    "param": "statsreg"
+   }
+        
+	 * @param bodyfilter
+	 * @return
+	 * @throws NoBodyFilterException
+	 * @throws EmptyFieldException
+	 * @throws WrongStateCodeException
+	 * @throws WrongParamException
+	 * @throws WrongPeriodException
+	 */
 	@PostMapping(value="filterstats")
 	public ResponseEntity<Object> getFilterStats(@RequestBody JSONObject bodyfilter) throws NoBodyFilterException, EmptyFieldException,WrongStateCodeException, WrongParamException, WrongPeriodException{
 		if(bodyfilter.isEmpty())  throw new NoBodyFilterException();
