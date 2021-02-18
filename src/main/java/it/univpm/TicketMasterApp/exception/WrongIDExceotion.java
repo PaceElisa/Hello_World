@@ -11,6 +11,10 @@ package it.univpm.TicketMasterApp.exception;
 public class WrongIDExceotion extends Exception {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
 	 * costruttore
 	 */
 	public WrongIDExceotion() {
@@ -22,7 +26,7 @@ public class WrongIDExceotion extends Exception {
 	 * @return messaggio di errore
 	 */
 	public String IDError() {
-		return("L'ID inserito è errato, si consiglia di utilizzare la rotta\"/promoter\" per ottenere degli ID promoter validi" );
+		return("L'ID inserito è errato o non esiste, si prega di utilizzare la rotta\"localhost:8080/promoter\" per ottenre una lista di ID promoter validi" );
 		
 	}
 

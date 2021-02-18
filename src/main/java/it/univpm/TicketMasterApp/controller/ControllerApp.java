@@ -3,13 +3,16 @@
  */
 package it.univpm.TicketMasterApp.controller;
 
+import it.univpm.TicketMasterApp.exception.EmptyFieldException;
 import it.univpm.TicketMasterApp.exception.EmptyIDException;
 import it.univpm.TicketMasterApp.exception.NoBodyException;
+import it.univpm.TicketMasterApp.exception.NoBodyFilterException;
 
 //import org.springframework.web.bind.annotation.RestController;
 
 import it.univpm.TicketMasterApp.exception.NoPromoterException;
 import it.univpm.TicketMasterApp.exception.WrongIDExceotion;
+import it.univpm.TicketMasterApp.exception.WrongParamException;
 import it.univpm.TicketMasterApp.exception.WrongStateCodeException;
 import it.univpm.TicketMasterApp.service.EventService;
 import it.univpm.TicketMasterApp.model.*;
@@ -68,7 +71,7 @@ public class ControllerApp {
 	{
 		JSONObject obj=(JSONObject) JSONValue.parse(body);
 		JSONArray vector= new JSONArray();
-		if(obj.isEmpty()) throw new NoBodyException("BodyErrorStats");
+		if(obj.isEmpty()) throw new NoBodyException();
 		Vector<String> id_promoter=new Vector<String>();
 		
 		 vector=(JSONArray)obj.get("promoter");
@@ -93,6 +96,36 @@ public class ControllerApp {
 	@ExceptionHandler(NoBodyException.class)
 	public ResponseEntity<Object> handleIOException(NoBodyException err){
 		return new ResponseEntity<> (err.BodyErrorStats(),HttpStatus.BAD_REQUEST);
+	}
+	
+	@PostMapping(value="filterstats")
+	public ResponseEntity<Object> getFilterStats(@RequestBody JSONObject bodyfilter) throws NoBodyFilterException, EmptyFieldException,WrongStateCodeException, WrongParamException, WrongPeriodException{
+		if(bodyfilter.isEmpty())  throw new NoBodyFilterException();
+			
+		
+		
+			return new ResponseEntity<>(e.FilterStats(bodyfilter), HttpStatus.OK);
+		}
+		
+		
+		
+		
+	
+	@ExceptionHandler(NoBodyFilterException.class)
+	public ResponseEntity<Object> handleIOException(NoBodyFilterException err){
+		return new ResponseEntity<> (err.BodyErrorFilter(),HttpStatus.BAD_REQUEST);
+	}
+	@ExceptionHandler(EmptyFieldException.class)
+	public ResponseEntity<Object> handleIOException(EmptyFieldException err){
+		return new ResponseEntity<> (err.Messaggio(),HttpStatus.BAD_REQUEST);
+	}
+	@ExceptionHandler(WrongParamException.class)
+	public ResponseEntity<Object> handleIOException(WrongParamException err){
+		return new ResponseEntity<> (err.Messaggio(),HttpStatus.BAD_REQUEST);
+	}
+	@ExceptionHandler(WrongPeriodException.class)
+	public ResponseEntity<Object> handleIOException(WrongPeriodException err){
+		return new ResponseEntity<> (err.Messaggio(),HttpStatus.BAD_REQUEST);
 	}
 	
 	
