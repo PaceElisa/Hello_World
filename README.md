@@ -62,6 +62,14 @@ N° | Tipo | Rotta | Descrizione
 Questa rotta fornisce come suggerimento per l'utente una lista di promoter presenti in una regione.
 Di default viene visualizzata una lista di promoter della provincia Manitoba, ma è possibile ottenere la lista anche per altre regioni, grazie all'utilizzo del parametro **stateCode**
 
+**NOTA** Come valore del parametro è necessario specificare il codice postale della regione in questione, esempio:                     
+**Alberta** ==>(**stateCode**=**AB**)                      
+**Quebec** ==> (**stateCode**=**QC**)                          
+**Manitoba** ==> (**stateCode**=**MB**)                                     
+**Saskatchewan** ==> (**stateCode**=**SK**)                                                            
+**Nuovo Brunswick** ==> (**stateCode**=**NB**)
+
+
 #### Modello
 ```
 {
@@ -77,15 +85,35 @@ dove:
 
 #### Risultato chiamata su postman
 ![Rotta Promoter (1)](https://user-images.githubusercontent.com/77582844/108105317-c4895900-708c-11eb-99e1-fb7b2ef02cd4.png)
-**NOTA** Come valore del parametro è necessario specificare il codice postale della regione in questione, esempio:                     
-**Alberta** ==>(**stateCode**=**AB**)                      
-**Quebec** ==> (**stateCode**=**QC**)                          
-**Manitoba** ==> (**stateCode**=**MB**)                                     
-**Saskatchewan** ==> (**stateCode**=**SK**)                                                            
-**Nuovo Brunswick** ==> (**stateCode**=**NB**)
 
+#### Eccezioni che può generare la chiamata
+
+ - Nel caso in cui l'utente dovesse inserire una regione tale per cui non ci sono promoter validi o specificati, viene lanciata l'eccezione ***NoPromoterExcepton*** che stampa il seguente messaggio:
+ 
+ ```
+In questa regione non è specificato nessun promoter, prova altre regioni consentite...
+     
+```
+
+ - Se l'utente inserisce uno stateCode errato o non presenti tra le provincie analizzate, viene eseguita l'eccezione ***WrongStateCodeException***, che riporta il seguente messaggio:
+
+```
+Gli stateCode consentiti sono: 
+AB(Alberta),
+QC(Quebec),
+MB(Manitoba),
+SK(Saskatchewanc),
+NB(Nuovo Brunswick)
+
+```
+
+ 
+
+
+ 
 
 ### 2. GET /statsReg
+Restituisce le statistiche per ogni regione.
 #### Modello
     {
         "Regione": "Alberta",
@@ -106,16 +134,21 @@ dove:
     }
 dove :
 1. **"Regione"** : restituisce il nome della regione in cui si svolgono gli eventi;
-2. **"Eventi mensili"** : ci restituisce il numero di eventi che si svolgeranno in un determinato periodo ti tempo a scelta dell'utente.
-   In particolare "media" non è altro che la media totale degli eventi che si possono svolgere in un mese. "min" indica il numero minimo di eventi che si ha in un mese. "max" il    numero massimo di eventi
-3. **"Tot_Prom_Genere"** : individua i vari generi degli eventi che si tengono in una data regione e di questi ne fa una conta. Ad esempio, "Music" ha undici eventi di questo genere, e così via con gli altri;
-4. **"Tot_Prom"** : restituisce il numero totale di eventi di quella regione.
+2. **"Eventi mensili"** : ci restituisce il numero di eventi mensili che si svolgono in un determinato stato, nell'anno corrente.
+   In particolare "media" non è altro che la media totale degli eventi che si svolgono in un mese, "min" indica il numero minimo di eventi che si ha in un mese, "max" il    numero massimo di eventi mensili
+3. **"Tot_Prom_Genere"** : numero totale di promoter per il genere di evento che sponsorizzano in quella provincia. Ad esempio, "Music" viene sponsorizzata da undici promoter e così via con gli altri;
+4. **"Tot_Prom"** : restituisce il numero totale di promoter che sponsorizzano eventi in quella regione.
 
-#### Risultato chiamata su postman
+#### Risultato chiamata su Postman
 ![response rotta Stats reg](https://user-images.githubusercontent.com/77582844/108222568-328b5a00-7139-11eb-882e-e800ce67f54a.png)
 
-### 3. GET /statsProm
-#### Modello
+
+
+
+
+### 3. POST /statsProm
+Questa è una chiamata di tipo **POST**, che restituisce statistiche sui promoter scelti dall'utente, passando come **parametri l'ID** relativo al promoter.
+#### Modello del Body
 ```
 {
        "promoter": [
@@ -131,9 +164,180 @@ dove :
     ]
 }
 ```
-in cui gli ID che sono presenti nel JSON sopra riportati si riferisco ai promoter che organizzano un dato evento
+
+I risultato della richiesta stampa:
+
+1.**ID_Promoter**: l'ID che identifica il promoter.
+2.**Tot_Eventi_Genere**: Restituisce il numero totali di eventi suddivisi per genere, che vengono sponsorizzati dal promoter
+3.**Tot_Stati_Evento**: Numero di stati in cui il promoter sponsorizza un determinato evento
+4.**Tot_Eventi**: numero totale di eventi sponsorizzati dal promoter
+
 #### Risultato chiamata su postman
 ![Rotta statsProm](https://user-images.githubusercontent.com/77582844/108227543-4ab1a800-713e-11eb-9cae-b064e829e0c0.png)
+
+#### Eccezioni che può generare la chiamata
+
+- Se l'utente inserisce un ID errato, viene lanciata l'eccezione ***WrongIDException*** che restituisce il seguente messaggio di errore:
+
+ ```
+L'ID inserito è errato o non esiste, si prega di utilizzare la rotta\"localhost:8080/promoter\" per ottenre una lista di ID promoter validi
+     
+```
+ - Nel caso in cui l'utente si dimentica di compilare un campo del body, parte il metodo ***EmptyIDException*** che stampa a video questo messaggio:
+
+```
+E' necessario riempire tutti i campi del corpo per un corretto funzionamento...
+
+```
+ - Se l'utente dovesse inserire un body vuoto, viene fatta partire l'eccezione ***NoBodyException***, con il seguente messaggio:
+
+```
+E' richiesto un body di questo tipo:
+{
+    "promoter": [
+        {
+            "ID": "850"
+        },
+        {
+            "ID": "653"
+        },
+        {
+            "ID": "494"
+        }
+    ]
+}
+```
+
+
+### 4. POST /filterstats
+Restituisce le statistiche relative alla regione e ai promoter filtrate per uno o più province, uno o più generi e un periodo di tempo, per il calcolo del numero minimo, massimo e medio degli eventi, per quel periodo.
+L'utente può scegliere di effettuare il calcolo per un periodo trimestrale o semestrale, inserendo il numero 3 o 6
+In più l'utente deve selezionare su quale statistica vuole effettuare i seguenti filtri
+
+#### Modello del Body
+
+```
+{
+    "regione": [
+        {
+            "stateCode": "MB"
+        },
+        {
+            "stateCode": "AB"
+        },
+        {
+            "stateCode": "QC"
+        }
+    ],
+    "genere": [
+        {
+            "name": "Music"
+        },
+        {
+            "name": "Sport"
+        }
+    ],
+    "periodo": 3,
+        
+   
+    "stats": "statsReg"
+}
+```
+Parametri da inserire per poter filtrare le statistiche sono:
+ -**stateCode**:  il codice postale di una o più province, si puo scegliere tra:
+ ```
+- AB(Alberta),
+- QC(Quebec),
+- MB(Manitoba),
+- SK(Saskatchewanc),
+- NB(Nuovo Brunswick)
+```
+ 
+ -**name**: il nome della tipologia del genere, è possibile scegliere tra:
+ ```
+- Music,
+- Sport,
+- Film,
+- Art & Theatre,
+- Altro
+```
+
+Se l'utente non dovesse inserire i JSONObject relativi ai campi **stateCode** e **genere**, allora viene restituito solo la statistica per il periodo scelto
+
+-**periodo**: si può scegliere tra un periodo trimestrale(3) e uno semestrale(6)
+
+-**stats**: indica per quale statistica si vuole effettuare il filtraggio, quindi scegliere di inserire uno tra i due:
+```
+- statsReg
+- statsProm
+```
+
+#### Eccezioni che può generare la chiamata
+
+- Se l'utente dovesse inserire un body vuoto, viene fatta partire l'eccezione ***NoBodyFilterException***, con il seguente messaggio:
+```
+E' richiesto un body di questo tipo:\n"
+			{
+    "regione":[
+        {
+          "stateCode": "AB"
+        },
+        {
+            "stateCode":"QC"
+        }
+    ],
+    "genere":[
+        {
+            "name": "Music"
+        },
+        {
+            "name": "Sport"
+        }
+    ],
+    "periodo": 3,
+    "param": "statsreg"
+}
+
+```
+- Nel caso in cui l'utente devesso inserire una tipologia di genere non consentita, o incorretta, viene lanciata l'eccezione ***WrongParamException***, con il seguente messaggio:
+
+```
+I parametri inseriti non sono tra quelli consentiti o sono errati, perfavore scegliere tra questi:
+Music
+Sport
+Art & Theatre
+Film
+Altro
+```
+-Nel caso in cui l'utente inserisce un periodo diverso da 3 o 6, viene fatta partire l'eccezione ***WrongPeriodException***
+```
+E' possibile calcolare il periodo solo trimestralmente(£) o semestralmente(6), inserire uno di questi due valori
+
+```
+- Nel caso invece lutente inserisse degli stateCode errati o non presenti tra le provincie analizzate, viene eseguita l'eccezione ***WrongStateCodeException***, che riporta il seguente messaggio:
+
+```
+Gli stateCode consentiti sono: 
+AB(Alberta),
+QC(Quebec),
+MB(Manitoba),
+SK(Saskatchewanc),
+NB(Nuovo Brunswick)
+
+```
+##Test
+
+>Nel programma vengono anche effettuati alcuni test:
+
+-**Test 1**
+Verifica  se il download dei dati ed inserimento di questi in delle strutture dati, da esito nullo
+
+-**Test 2**
+Verifica che l'eccezione WrongStateCodeException sia lanciata correttamente
+
+
+
+
 
 ## Autori
 Il progetto è stato realizzato da:
