@@ -11,15 +11,18 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
-
+import it.univpm.TicketMasterApp.exception.EmptyFieldException;
 import it.univpm.TicketMasterApp.exception.EmptyIDException;
 
 import it.univpm.TicketMasterApp.exception.NoPromoterException;
 import it.univpm.TicketMasterApp.exception.WrongIDExceotion;
-
+import it.univpm.TicketMasterApp.exception.WrongParamException;
+import it.univpm.TicketMasterApp.exception.WrongPeriodException;
 import it.univpm.TicketMasterApp.exception.WrongStateCodeException;
 
 import it.univpm.TicketMasterApp.model.Promoter;
+import it.univpm.TicketMasterApp.utils.Filter.Filter;
+import it.univpm.TicketMasterApp.utils.Filter.FilterPeriodo;
 import it.univpm.TicketMasterApp.utils.stats.StasReg;
 import it.univpm.TicketMasterApp.utils.stats.Stats;
 import it.univpm.TicketMasterApp.utils.stats.StatsProm;
@@ -154,13 +157,74 @@ public class EventServiceImpl implements EventService {
 		
 		return proms;
 	}
-	
-	public JSONArray FilterStats(JSONObject bodyfilter) {
+	/**
+	 * Metodo che calcola le statistiche filtrate
+	 * @param body
+	 * @return JSONArray
+	 */
+	@SuppressWarnings("unchecked")
+	public JSONArray FilterStats(JSONObject bodyfilter) throws EmptyFieldException, WrongStateCodeException, WrongParamException, WrongPeriodException {
 		DownloadEvent evento= new DownloadEvent();
+		JSONArray finale= new JSONArray();
+		JSONObject statreg= new JSONObject();
+		evento.EventiInfo("AB");
+		evento.EventiInfo("QC");
+		evento.EventiInfo("MB");
+		evento.EventiInfo("NB");
+		evento.EventiInfo("SK");
+		 
+		Filter fo=new Filter();
 		
-		return null;
+		fo.Parsing(bodyfilter);
 		
-	}
+		if(fo.getStats().equals("statsReg")) {
+			if(!(fo.GetFiltereg().isEmpty() && fo.getFiltgen().isEmpty())) {
+				for(String s: fo.GetFiltereg()) {
+					fo.Filtraggio(evento.getStrutturaDati(),s);
+				
+				Stats stats=new StasReg(fo.DatiFiltrati(), s);
+				statreg.put("Regione", evento.Associa(s));
+				statreg.put("Tot_Prom", stats.CalcoloTot());
+				JSONObject appoggio=new JSONObject();
+				JSONObject correzione=new JSONObject();
+				
+				correzione.put("Tot_Prom_Genere", stats.CalcoloGenere());
+				for(String gen: fo.getFiltgen()) {
+					correzione.put(gen,appoggio.get(gen) );
+				}
+				statreg.put("Tot_Prom_Genere", correzione);
+				finale.add(statreg);
+				
+				}
+			} if(fo.GetFiltereg().isEmpty() && !(fo.getFiltgen().isEmpty())) {
+				
+			}
+			
+			
+		}
+		if(fo.getStats().equals("StatsProm")){
+			if(!(fo.GetFiltereg().isEmpty() && fo.getFiltgen().isEmpty())) {
+				for(String s: fo.GetFiltereg()) {
+					fo.Filtraggio(evento.getStrutturaDati(),s);
+				
+			}
+			
+			
+		}if(fo.GetFiltereg().isEmpty() && !(fo.getFiltgen().isEmpty())) {
+			
+		}
+		
+		
+		
+	   }
+		FilterPeriodo t=new FilterPeriodo(fo.DatiFiltrati());
+		if(fo.getPeriodo()==3) {
+			t.trimestrale();}
+			else { if(fo.getPeriodo()==6)
+				t.semestrale();
+			}
+		return finale;
+    }
 }
 
 

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package it.univpm.TicketMasterApp.controller;
+package it.univpm.TicketMasterApp.exception;
 
 /**Metodo che viene lanciato quando il periodo inserito nel body non è consentito
  * @author Elisa Pace

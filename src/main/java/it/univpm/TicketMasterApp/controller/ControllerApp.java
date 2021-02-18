@@ -171,9 +171,10 @@ public class ControllerApp {
     "periodo": 3,
     "param": "statsreg"
    }
-        
+        Dove period indica il periodo sul quale effettuare il calcolo del numero medio, minimo e massimo di eventi trimestrali e 
+        semestrali, mentre stats indica quale delle due statistiche l'utente vuole filtrare
 	 * @param bodyfilter
-	 * @return
+	 * @return un jsonarray con tanti JSONObject con le statistiche filtrate
 	 * @throws NoBodyFilterException
 	 * @throws EmptyFieldException
 	 * @throws WrongStateCodeException

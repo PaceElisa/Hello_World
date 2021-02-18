@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"oggetti"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"it.univpm.TicketMasterApp"},{"l":"it.univpm.TicketMasterApp.controller"},{"l":"it.univpm.TicketMasterApp.exception"},{"l":"it.univpm.TicketMasterApp.model"},{"l":"it.univpm.TicketMasterApp.service"},{"l":"it.univpm.TicketMasterApp.utils.Filter"},{"l":"it.univpm.TicketMasterApp.utils.stats"}];updateSearchResults();

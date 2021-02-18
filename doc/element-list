@@ -1,1 +1,7 @@
-oggetti
+it.univpm.TicketMasterApp
+it.univpm.TicketMasterApp.controller
+it.univpm.TicketMasterApp.exception
+it.univpm.TicketMasterApp.model
+it.univpm.TicketMasterApp.service
+it.univpm.TicketMasterApp.utils.Filter
+it.univpm.TicketMasterApp.utils.stats
