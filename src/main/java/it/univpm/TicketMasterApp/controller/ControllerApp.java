@@ -13,16 +13,17 @@ import it.univpm.TicketMasterApp.exception.NoBodyFilterException;
 import it.univpm.TicketMasterApp.exception.NoPromoterException;
 import it.univpm.TicketMasterApp.exception.WrongIDExceotion;
 import it.univpm.TicketMasterApp.exception.WrongParamException;
+import it.univpm.TicketMasterApp.exception.WrongPeriodException;
 import it.univpm.TicketMasterApp.exception.WrongStateCodeException;
 import it.univpm.TicketMasterApp.service.EventService;
-import it.univpm.TicketMasterApp.model.*;
+
 
 import java.util.Vector;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import org.json.simple.parser.ParseException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
