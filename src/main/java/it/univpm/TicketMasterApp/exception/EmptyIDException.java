@@ -10,10 +10,7 @@ package it.univpm.TicketMasterApp.exception;
  */
 public class EmptyIDException extends Exception {
 
-	/**
-	 * messaggio passato quando viene lanciata l'eccezione
-	 */
-	String messaggio;
+	
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -24,13 +21,7 @@ public class EmptyIDException extends Exception {
 		
 	}
 
-	/** costruttore con :
-	 * @param message
-	 */
-	public EmptyIDException(String messaggio) {
-		this.messaggio=messaggio;
-		
-	}
+	
 
 	/**
 	 *Messaggio di errore 
@@ -39,12 +30,6 @@ public class EmptyIDException extends Exception {
 	public String EmptyIDError() {
 		return("E' necessario riempire tutti i campi del corpo per un corretto funzionamento...");
 	}
-	/**Messaggio di errore
-	 * @return  ritorna un messaggio di errore scritto dal programmatore per la gestione della rotta filter
-	 */
 	
-	public String Messaggio() {
-		return messaggio;
-	}
 
 }
