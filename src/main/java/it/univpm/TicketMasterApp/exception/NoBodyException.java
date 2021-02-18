@@ -22,13 +22,16 @@ public class NoBodyException extends Exception {
 	public NoBodyException() {
 		super("Errore: non è stato inserito nessun body...");
 	}
-	public NoBodyException( String metodo) {
-		super("Errore: non è stato inserito nessun body...");
+	public  void Body(String metodo) {
+		
 		if(metodo=="BodyErrorStats")
 			BodyErrorStats();
 		else BodyErrorFilter();
-			
+		
 	}
+	
+			
+	
 
 	/**Metodo lanciato dalla classe ControllerApp
 	 * @param message
@@ -50,21 +53,22 @@ public class NoBodyException extends Exception {
 				+ "    ]\r\n"
 				+ "}");
 		}
+	/**
+	 * Metodo che viene lanciato quando viene a mancare il body relativa alla rotta filter
+	 * @return   un messaggio di errore che mostra un esempio del corpo da inserire
+	 */
 	public String BodyErrorFilter() {
 		return("E' richiesto un body di questo tipo:\n"
 				+ "{\r\n"
-				+ "    \"regione\": [\r\n"
+				+ "    \"regione\":[\r\n"
 				+ "        {\r\n"
-				+ "            \"stateCode\": \"MB\"\r\n"
+				+ "          \"stateCode\": \"AB\"\r\n"
 				+ "        },\r\n"
 				+ "        {\r\n"
-				+ "            \"stateCode\": \"AB\"\r\n"
-				+ "        },\r\n"
-				+ "        {\r\n"
-				+ "            \"stateCode\": \"QC\"\r\n"
+				+ "            \"stateCode\":\"QC\"\r\n"
 				+ "        }\r\n"
 				+ "    ],\r\n"
-				+ "    \"genere\": [\r\n"
+				+ "    \"genere\":[\r\n"
 				+ "        {\r\n"
 				+ "            \"name\": \"Music\"\r\n"
 				+ "        },\r\n"
@@ -72,12 +76,10 @@ public class NoBodyException extends Exception {
 				+ "            \"name\": \"Sport\"\r\n"
 				+ "        }\r\n"
 				+ "    ],\r\n"
-				+ "    \"periodo\": {\r\n"
-				+ "        \"data_inizio\": \"2021-03-01\",\r\n"
-				+ "        \"data_fine\": \"2021-04-01\"\r\n"
-				+ "    },\r\n"
-				+ "    \"stats\": \"statsReg\"\r\n"
+				+ "    \"periodo\": 3,\r\n"
+				+ "    \"param\": \"statsreg\"\r\n"
 				+ "}");
+				
 		}
 
 	
