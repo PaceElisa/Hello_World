@@ -49,6 +49,9 @@ L'utente può scegliere tra gli eventi che si svolgeranno nelle seguenti provinc
 ###### /StatsPromoter
 ![Diagramma delle sequenze statsPromoter](https://user-images.githubusercontent.com/77582844/108044217-47d18d00-7042-11eb-86bc-cb22962121e5.PNG)
 
+###### /Filter
+![diagramma delle sequenze filter](https://user-images.githubusercontent.com/77582844/108414987-27195b00-722d-11eb-8fa5-42a8172402f0.PNG)
+
 ## Rotte
 L'utente può effettuare le richieste tramite Postman al seguente indirizzo
 ```
