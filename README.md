@@ -276,7 +276,7 @@ Se l'utente non dovesse inserire i JSONObject relativi ai campi **stateCode** e 
 
 -**periodo**: si può scegliere tra un periodo trimestrale(3) e uno semestrale(6)
 
--**stats**: indica per quale statistica si vuole effettuare il filtraggio, quindi scegliere di inserire uno tra i due:
+-**param**: indica per quale statistica si vuole effettuare il filtraggio, quindi scegliere di inserire uno tra i due:
 ```
 - statsReg
 - statsProm
