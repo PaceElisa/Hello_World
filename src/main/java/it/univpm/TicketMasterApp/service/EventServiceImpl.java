@@ -8,14 +8,17 @@ import java.util.Iterator;
 import java.util.Vector;
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
+
 import it.univpm.TicketMasterApp.exception.EmptyIDException;
-import it.univpm.TicketMasterApp.exception.NoBodyException;
+
 import it.univpm.TicketMasterApp.exception.NoPromoterException;
 import it.univpm.TicketMasterApp.exception.WrongIDExceotion;
+
 import it.univpm.TicketMasterApp.exception.WrongStateCodeException;
-import it.univpm.TicketMasterApp.model.Eventi;
+
 import it.univpm.TicketMasterApp.model.Promoter;
 import it.univpm.TicketMasterApp.utils.stats.StasReg;
 import it.univpm.TicketMasterApp.utils.stats.Stats;
@@ -71,12 +74,12 @@ public class EventServiceImpl implements EventService {
 	 * Metodo che mi restituisce un jsonarray con tutte le statistiche di ogni regione
 	 * @see DownloadEvent#EventiInfo(String)
 	 * @see DownloadEvent#getStrutturaDati()
-	 * @see DownloadEvent#clear()
 	 * @see Stats#getJSONObject()
 	 * @return un jsonarray con tanti jsonobject quante le regioni analizzate, che contengono le statistiche di quest'ultime
 	 */
 	@SuppressWarnings("unchecked")
 	public JSONArray StatsRegion() {
+		//definisco e inizializzo il vettore che contiene i codici postali delle ergioni dalle quali voglio scaricare i dati
 		ArrayList<String> regioni= new ArrayList<>();
 		regioni.add("AB");
 		regioni.add("QC");
@@ -84,30 +87,22 @@ public class EventServiceImpl implements EventService {
 		regioni.add("NB");
 		regioni.add("SK");
 		Iterator<String> it= regioni.iterator();
-		
+		//download dati
 		JSONArray sr=new JSONArray();
 		DownloadEvent event= new DownloadEvent();
+		
 		event.EventiInfo("AB");
 		event.EventiInfo("QC");
 		event.EventiInfo("MB");
 		event.EventiInfo("NB");
 		event.EventiInfo("SK");
 		
-		//Vector<Eventi> corretto=new Vector<>();
+		//scorro l'array  regioni 
 		while(it.hasNext()) {
 			//quando it.next() raggiunge la fine del vettore si ferma, senza dare errore
 			String r =it.next();
 			if(r !=null) {
-			
-		//for(Eventi e :event.getStrutturaDati()) {
-			
-		
-			
-			//if(e.getStateCode().equals(r)) 
-					//corretto.add(e);
-			//}
-			
-		        Stats statistica=new StasReg(event.getStrutturaDati(),r);
+			    Stats statistica=new StasReg(event.getStrutturaDati(),r);
 				sr.add(statistica.getJSONObject());
 			}
 		}
@@ -158,6 +153,13 @@ public class EventServiceImpl implements EventService {
 		
 		
 		return proms;
+	}
+	
+	public JSONArray FilterStats(JSONObject bodyfilter) {
+		DownloadEvent evento= new DownloadEvent();
+		
+		return null;
+		
 	}
 }
 
