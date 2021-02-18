@@ -33,7 +33,7 @@ L'utente può scegliere tra gli eventi che si svolgeranno nelle seguenti provinc
 ![Diagramma delle classi package service](https://user-images.githubusercontent.com/77582844/108220942-8d23b680-7137-11eb-84e4-38e09c9a47c4.PNG)
 
 ###### Package utils
-![Diagramma delle classi utils stats filter](https://user-images.githubusercontent.com/77582844/108414250-4b286c80-722c-11eb-90ae-120a1d44f395.PNG)
+![Diagramma delle classi package utils stats filter](https://user-images.githubusercontent.com/77582844/108425309-921d5e80-723a-11eb-83ca-d7bfed0771cc.PNG)
 
 ###### Package controller
 ![Diagramma delle classi package controller](https://user-images.githubusercontent.com/77582844/108414550-a9ede600-722c-11eb-9084-0329a68bff24.PNG)
