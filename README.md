@@ -8,9 +8,10 @@
 5. [Autori](#Autori)
 
 ## Introduzione
-La nostra applicazione permette a chi la consulta di sapere i principali eventi che si svolgeranno in alcune provincie del Canada tramite l'utilizzo dell'API TicketMaster.
-Inoltre per agevolare l'utente nell'uso di questa applicazione si ricorre all'utilizzo di alcune rotte che consentono la visualizzazione di statistiche e la loro filtrazione.
-E' possibile infatti visualizzare statistiche relative agli eventi di una determinata provincia e per uno o più promoter.
+La nostra applicazione TicketMasterApp permette all'utente di conoscere i principali eventi che si svolgono in alcune provincie del Canada, questo grazie all'utilizzo dell'API TicketMaster.
+L'applicazione fornisce all'utente la possibilità di ottenere delle informazioni riguardanti i promoter e gli eventi che essi sponsorizzano nelle varie provincie, attraverso l'utilizzo di statistiche e  di filtri, che facilitano la ricerca dei dati desiderati.  
+Nell'uso di questa applicazione si ricorre quindi, all'utilizzo di alcune rotte che consentono la visualizzazione di statistiche e la loro filtrazione e al fine di agevolare l'utente, si è messa a disposizione una rotta che ritorna le informazioni relative hai promoter da utilizzare, in alcuni casi, per effettuare delle chiamate.
+E' possibile infatti visualizzare statistiche relative agli eventi di ogni provincia e per uno o più promoter.
 L'utente può scegliere tra gli eventi che si svolgeranno nelle seguenti provincie:
 1. Alberta
 2. Saskatchewan
@@ -44,11 +45,18 @@ L'utente può scegliere tra gli eventi che si svolgeranno nelle seguenti provinc
 ![Diagramma delle sequenze statsPromoter](https://user-images.githubusercontent.com/77582844/108044217-47d18d00-7042-11eb-86bc-cb22962121e5.PNG)
 
 ## Rotte
+L'utente può effettuare le richieste tramite Postman al seguente indirizzo
+```
+localhost:8080
+```
+Le rotte disponibili sono le seguenti:
+
 N° | Tipo | Rotta | Descrizione
 ----- | ------------ | -------------------- | ----------------------
-[1](#1) | ` GET ` | `/Promoter` | *restituisce un JSONArray composto da molti JSONObject al cui interno viene specificato: 1. ID; 2. nome; 3. descrizione del promoter. *
-[2](#2) | ` GET ` | `/statsReg` | *restituisce un JSONArray con all'interno molti JSONObject che forniscono: 1. le statistiche della regione che ospita l'evento; 2. il num totale di promoter che sponsorizzano tale evento; 3. il numero totale di eventi mensili in quella data regione.*
-[3](#3) | ` GET ` | `/statsProm` | *restituisce un JSONAarry che contiene dei JSONObject che contengono: 1.il numero totale di eventi; 2. il numero totale di eventi per genere che sponsorizza il promoter; 3. il numero di stati in cui il promoter sponsorizza l'evento.*
+[1](#1) | ` GET ` | `/Promoter?=stateCode=MB` | *restituisce un JSONArray composto da molti JSONObject al cui interno viene specificato: 1. ID; 2. nome; 3. descrizione del promoter. *
+[2](#2) | ` GET ` | `/statsReg` | *restituisce un JSONArray con all'interno molti JSONObject che forniscono statistiche relative ad ogni provincia, in particolare ritorna: 1. Il numero di promoter che sponsorizzano eventi in quello stato suddivisi per genere di evento; 2. il num totale di promoter che sponsorizzano eventi in quello stato; 3. il minimo,massimo e  la media degli eventi mensili che si svolgono in quella data regione, nell'anno corrente.*
+[3](#3) | ` POST ` | `/statsProm` | *restituisce un JSONAarry che contiene dei JSONObject che forniscono statistiche relative ai promoter, tra cui: 1.il numero totale di eventi che sponsorizzano; 2. il numero totale di eventi per genere che sponsorizza il promoter; 3. il numero di stati in cui il promoter sponsorizza l'evento.*
+[4](#4) | ` POST ` | `/filterstats` | * restituisce un JSONArray con all'interno dei JSONObject, che contengono informazioni sulle statistiche, ma filtrate attraverso dei parametri specificati dall'utente, in più restituiscono il numero massimo, minimo e la media di eventi per un periodo scelto dall'utente*
 
 ### 1. GET /Promoter
 #### Modello
