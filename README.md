@@ -53,7 +53,7 @@ Le rotte disponibili sono le seguenti:
 
 N° | Tipo | Rotta | Descrizione
 ----- | ------------ | -------------------- | ----------------------
-[1](#1) | ` GET ` | `/Promoter?=stateCode=MB` | *restituisce un JSONArray composto da molti JSONObject al cui interno viene specificato: 1. ID; 2. nome; 3. descrizione del promoter. *
+[1](#1) | ` GET ` | `/Promoter?stateCode=MB` | *restituisce un JSONArray composto da molti JSONObject al cui interno viene specificato: 1. ID; 2. nome; 3. descrizione del promoter. *
 [2](#2) | ` GET ` | `/statsReg` | *restituisce un JSONArray con all'interno molti JSONObject che forniscono statistiche relative ad ogni provincia, in particolare ritorna: 1. Il numero di promoter che sponsorizzano eventi in quello stato suddivisi per genere di evento; 2. il num totale di promoter che sponsorizzano eventi in quello stato; 3. il minimo,massimo e  la media degli eventi mensili che si svolgono in quella data regione, nell'anno corrente.*
 [3](#3) | ` POST ` | `/statsProm` | *restituisce un JSONAarry che contiene dei JSONObject che forniscono statistiche relative ai promoter, tra cui: 1.il numero totale di eventi che sponsorizzano; 2. il numero totale di eventi per genere che sponsorizza il promoter; 3. il numero di provincie in cui il promoter sponsorizza l'evento.*
 [4](#4) | ` POST ` | `/filterstats` | * restituisce un JSONArray con all'interno dei JSONObject, che contengono informazioni sulle statistiche, ma filtrate attraverso dei parametri specificati dall'utente, in più restituiscono il numero massimo, minimo e la media di eventi per un periodo scelto dall'utente*
