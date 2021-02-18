@@ -19,7 +19,7 @@ import it.univpm.TicketMasterApp.exception.EmptyIDException;
  * @author Marco Vassallo
  * Questa classe si occupa della corretta gestione della classe StatsPromoter
  */
-class StatsPromoterTest {
+class EmptyIDExceptionTest {
 
 	Vector<String> promoterbody;
 	EventServiceImpl service;
@@ -40,7 +40,7 @@ class StatsPromoterTest {
 	}
 
 	@Test
-	@DisplayName("Corretto funzionamento di StatsPromoter.")
+	@DisplayName("Corretto funzionamento dell'Eccezione EmptyIDException.")
 	void test() {
 		promoterbody.add("850");
 		promoterbody.add(null);
