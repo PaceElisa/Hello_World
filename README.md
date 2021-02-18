@@ -32,7 +32,7 @@ L'utente può scegliere tra gli eventi che si svolgeranno nelle seguenti provinc
 
 ###### package utils-stats
 ![Diagramma delle classi package utils-stats](https://user-images.githubusercontent.com/77582844/108226430-3325ef80-713d-11eb-96d5-20c060655883.PNG)
-  **Nota**: il package utils contiene anche il package stats.
+  **Nota**: il package utils contiene anche il package stats e filter.
 
 #### Diagramma delle sequenze
 ###### /Promoter
@@ -55,10 +55,13 @@ N° | Tipo | Rotta | Descrizione
 ----- | ------------ | -------------------- | ----------------------
 [1](#1) | ` GET ` | `/Promoter?=stateCode=MB` | *restituisce un JSONArray composto da molti JSONObject al cui interno viene specificato: 1. ID; 2. nome; 3. descrizione del promoter. *
 [2](#2) | ` GET ` | `/statsReg` | *restituisce un JSONArray con all'interno molti JSONObject che forniscono statistiche relative ad ogni provincia, in particolare ritorna: 1. Il numero di promoter che sponsorizzano eventi in quello stato suddivisi per genere di evento; 2. il num totale di promoter che sponsorizzano eventi in quello stato; 3. il minimo,massimo e  la media degli eventi mensili che si svolgono in quella data regione, nell'anno corrente.*
-[3](#3) | ` POST ` | `/statsProm` | *restituisce un JSONAarry che contiene dei JSONObject che forniscono statistiche relative ai promoter, tra cui: 1.il numero totale di eventi che sponsorizzano; 2. il numero totale di eventi per genere che sponsorizza il promoter; 3. il numero di stati in cui il promoter sponsorizza l'evento.*
+[3](#3) | ` POST ` | `/statsProm` | *restituisce un JSONAarry che contiene dei JSONObject che forniscono statistiche relative ai promoter, tra cui: 1.il numero totale di eventi che sponsorizzano; 2. il numero totale di eventi per genere che sponsorizza il promoter; 3. il numero di provincie in cui il promoter sponsorizza l'evento.*
 [4](#4) | ` POST ` | `/filterstats` | * restituisce un JSONArray con all'interno dei JSONObject, che contengono informazioni sulle statistiche, ma filtrate attraverso dei parametri specificati dall'utente, in più restituiscono il numero massimo, minimo e la media di eventi per un periodo scelto dall'utente*
 
 ### 1. GET /Promoter
+Questa rotta fornisce come suggerimento per l'utente una lista di promoter presenti in una regione.
+Di default viene visualizzata una lista di promoter della provincia Manitoba, ma è possibile ottenere la lista anche per altre regioni, grazie all'utilizzo del parametro **stateCode**
+
 #### Modello
 ```
 {
@@ -74,6 +77,13 @@ dove:
 
 #### Risultato chiamata su postman
 ![Rotta Promoter (1)](https://user-images.githubusercontent.com/77582844/108105317-c4895900-708c-11eb-99e1-fb7b2ef02cd4.png)
+**NOTA** Come valore del parametro è necessario specificare il codice postale della regione in questione, esempio:                     
+**Alberta** ==>(**stateCode**=**AB**)                      
+**Quebec** ==> (**stateCode**=**QC**)                          
+**Manitoba** ==> (**stateCode**=**MB**)                                     
+**Saskatchewan** ==> (**stateCode**=**SK**)                                                            
+**Nuovo Brunswick** ==> (**stateCode**=**NB**)
+
 
 ### 2. GET /statsReg
 #### Modello
