@@ -4,7 +4,7 @@
 package it.univpm.TicketMasterApp.utils.stats;
 
 import java.time.LocalDate;
-import java.time.temporal.TemporalAdjusters;
+
 import java.util.Vector;
 
 import org.json.simple.JSONObject;
@@ -20,8 +20,13 @@ import it.univpm.TicketMasterApp.service.DownloadEvent;
  */
 public class StasReg extends Stats {
 	//private long periodo;
+	//vettore degli eventi che contiene solo dati per il parametro passato
 	public Vector<Eventi> eve_s= new Vector<>();
-	String statecode;
+	
+	String regioneStatecode;
+	
+	
+	
 	
 /**
  * Costruttore
@@ -35,14 +40,9 @@ public class StasReg extends Stats {
 				if(ev.getStateCode().equals(parametro))
 					eve_s.add(ev);
 			}
-		statecode=parametro;
 		
-		//periodo=1;
-	}
-	
-	public StasReg(Vector<Eventi> eventi,String parametro, long periodo) {
-		super(eventi, parametro);
-		//this.periodo=periodo;
+		regioneStatecode=parametro;
+		
 	}
 	
 	/**Metodo che calcola il numero totale di promoter che sponsorizzano eventi in quella regione
@@ -155,7 +155,7 @@ public class StasReg extends Stats {
 			}
 		}
 		for(int cont:mesi) {
-			if(cont!=0) {
+			if(cont!=0) {//non conto i mesi che già sono passati nell'anno
 			if(cont>max) max=cont;
 			if(cont<min) min=cont;
 					}
@@ -179,7 +179,7 @@ public class StasReg extends Stats {
 	public JSONObject getJSONObject() {
 		DownloadEvent st= new DownloadEvent();
 		 JSONObject region= new JSONObject();
-		 region.put("Regione", st.Associa(statecode));
+		 region.put("Regione", st.Associa(regioneStatecode));
 		 region.put("Tot_Prom", CalcoloTot());
 		 region.put("Tot_Prom_Genere", CalcoloGenere());
 		 region.put("Eventi_Mensili",CalcoloEvento());
