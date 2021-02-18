@@ -325,15 +325,20 @@ SK(Saskatchewanc),
 NB(Nuovo Brunswick)
 
 ```
-##Test
+## Test
 
 >Nel programma vengono anche effettuati alcuni test:
-
+>Test relativi al package service
 -**Test 1**
 Verifica  se il download dei dati ed inserimento di questi in delle strutture dati, da esito nullo
 
 -**Test 2**
 Verifica che l'eccezione WrongStateCodeException sia lanciata correttamente
+
+>Test relativi alle statistiche, package stats
+
+-**Test 3**
+Verifica che l'eccezione EmptyIDException venga lanciata correttamente
 
 
 
