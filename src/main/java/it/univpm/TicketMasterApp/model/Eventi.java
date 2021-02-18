@@ -6,6 +6,7 @@ package it.univpm.TicketMasterApp.model;
 import java.util.Vector;
 
 /**
+ * 
  * Classe  che fornisce le informazioni necessarie su un evento.
  * @author Marco Vassallo
  * @author Elisa Pace
