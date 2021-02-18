@@ -24,6 +24,8 @@ L'utente può scegliere tra gli eventi che si svolgeranno nelle seguenti provinc
 ![UML Diagramma dei casi d'uso](https://user-images.githubusercontent.com/77582844/107976917-989da300-6fba-11eb-931b-a115e03b0430.PNG)
 
 #### Diagramma delle classi
+![UML Diagramma delle classi TicketMaster](https://user-images.githubusercontent.com/77582844/108417419-3e0d7c80-7230-11eb-8f58-064a56c2e943.jpg)
+
 ###### Package model
 ![Diagramma delle classi package model](https://user-images.githubusercontent.com/77582844/108220785-65cce980-7137-11eb-9bdf-795e65d68a49.PNG)
 
