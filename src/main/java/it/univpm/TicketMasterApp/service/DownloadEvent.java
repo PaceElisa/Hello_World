@@ -128,8 +128,9 @@ public class DownloadEvent {
 		}
 		
 	}
-/**
- * Metodo che analizza un singolo JSONObject n_eventi all'interno del JSONArray event alla ricerca del JSONArray promoters
+	
+	
+ /** Metodo che analizza un singolo JSONObject n_eventi all'interno del JSONArray event alla ricerca del JSONArray promoters
  * ,una volta trovato, salva i dati al suo interno in vettore di promoters
  * @param n_eventi
  * @return listaprom     restituisce il vettore vettorepro che contiene  oggetti di tipo promoters,
@@ -204,7 +205,9 @@ public class DownloadEvent {
 	 * @return il nome della regione(regione) associato al codice postale(stateCode)
 	 */
 	public String Associa(String stateCode) {
+		
 		String regione="";
+		
 		switch(stateCode) {
 		case "AB": regione="Alberta";break;
 		case "QC": regione="Quebec";break;
@@ -217,9 +220,10 @@ public class DownloadEvent {
 		//case "PE": regione="Isola del Principe Edoardo";break;
 		//case "NL": regione="Terranova e Labrador";break;
 		default: regione=null;
-		
 		}
+		
 		return regione;
+		
 	}
 	
 	/**
@@ -239,9 +243,8 @@ public class DownloadEvent {
 	 * Metodo che pulisce il Vector<Eventi> eventi
 	 */
 	public void clear() {
-		eventi=null;
+		eventi.clear();
 		// TODO Auto-generated method stub
 		
 	}
-
 }
