@@ -333,6 +333,15 @@ SK(Saskatchewanc),
 NB(Nuovo Brunswick)
 
 ```
+
+- Nel caso in cui l'utente dimentica di inserire un campo del body, o lo lascia vuoto, parte l'eccezione ***EmptyFieldException***, che rilascia il seguente messaggio:
+
+```
+Hai dimenticato di inserire un campo nel body... Riprova aggiungendo tutti i campi...
+
+```
+
+
 ## Test
 
 >Nel programma vengono anche effettuati alcuni test:
