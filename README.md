@@ -33,8 +33,11 @@ L'utente può scegliere tra gli eventi che si svolgeranno nelle seguenti provinc
 ###### Package utils
 ![Diagramma delle classi utils stats filter](https://user-images.githubusercontent.com/77582844/108414250-4b286c80-722c-11eb-90ae-120a1d44f395.PNG)
 
-###### package controller
+###### Package controller
 ![Diagramma delle classi package controller](https://user-images.githubusercontent.com/77582844/108414550-a9ede600-722c-11eb-9084-0329a68bff24.PNG)
+
+###### Package exception
+![Diagramma delle classi package exception](https://user-images.githubusercontent.com/77582844/108414724-dace1b00-722c-11eb-8c56-b1ef0a45f9c2.PNG)
 
 #### Diagramma delle sequenze
 ###### /Promoter
