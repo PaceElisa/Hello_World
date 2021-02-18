@@ -5,6 +5,7 @@ package it.univpm.TicketMasterApp.service;
 import java.util.Vector;
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import it.univpm.TicketMasterApp.exception.EmptyIDException;
 import it.univpm.TicketMasterApp.exception.NoPromoterException;
@@ -22,5 +23,6 @@ public interface EventService {
 	public  abstract Vector<Promoter> getPromoter(String stateCode) throws WrongStateCodeException, NoPromoterException;
 	public  abstract JSONArray StatsRegion();
 	public  abstract JSONArray  StatsPromoter(Vector<String> id) throws EmptyIDException, WrongIDExceotion;
+	public abstract JSONArray FilterStats(JSONObject bodyfilter);
 
 }
