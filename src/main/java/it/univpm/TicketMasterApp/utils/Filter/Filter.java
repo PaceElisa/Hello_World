@@ -47,8 +47,9 @@ public class Filter {
 	public void Parsing(JSONObject body) throws EmptyFieldException, WrongStateCodeException, WrongParamException, WrongPeriodException {
 		
 		if(body.containsKey("regione")) {
-			JSONArray array=(JSONArray) body.get("regione");
-			for(Object o: array) {
+			JSONArray vector=new JSONArray();
+			 vector=(JSONArray) body.get("regione");
+			for(Object o: vector) {
 				JSONObject obj=(JSONObject) o;
 				String s=(String)obj.get("stateCode");
 				Controlla(s);	
