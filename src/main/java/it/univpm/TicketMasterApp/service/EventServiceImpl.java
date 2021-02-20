@@ -165,6 +165,7 @@ public class EventServiceImpl implements EventService {
 	@SuppressWarnings("unchecked")
 	public JSONArray FilterStats(JSONObject bodyfilter) throws EmptyFieldException, WrongStateCodeException, WrongParamException, WrongPeriodException {
 		DownloadEvent evento= new DownloadEvent();
+		Vector<String> regioni= new Vector<>();
 		JSONArray finale= new JSONArray();
 		JSONObject statreg= new JSONObject();
 		evento.EventiInfo("AB");
@@ -172,10 +173,36 @@ public class EventServiceImpl implements EventService {
 		evento.EventiInfo("MB");
 		evento.EventiInfo("NB");
 		evento.EventiInfo("SK");
+		// inizializzo il vettore che contiene i codici postali delle regioni 
+		regioni.add("AB");
+		regioni.add("QC");
+		regioni.add("MB");
+		regioni.add("NB");
+		regioni.add("SK");
 		 
 		Filter fo=new Filter();
 		
 		fo.Parsing(bodyfilter);
+		Vector<String> reg= new Vector<>();
+		if(!(fo.GetFiltereg().isEmpty()))
+			reg=fo.GetFiltereg();
+		else reg=regioni;
+		
+		Iterator<String> itr= reg.iterator();
+		while(itr.hasNext()) {
+			String stCode=itr.next();
+			if(stCode!=null) {
+				
+				
+				if(fo.getStats().equals("statsReg")) {
+					
+					
+				}else {
+					
+				}
+			}
+			
+		}
 		
 		if(fo.getStats().equals("statsReg")) {
 			if(!(fo.GetFiltereg().isEmpty() && fo.getFiltgen().isEmpty())) {
