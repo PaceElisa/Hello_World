@@ -169,7 +169,7 @@ public class ControllerApp {
         }
     ],
     "periodo": 3,
-    "param": "statsreg"
+    "param": "statsReg"
    }
         Dove period indica il periodo sul quale effettuare il calcolo del numero medio, minimo e massimo di eventi trimestrali e 
         semestrali, mentre stats indica quale delle due statistiche l'utente vuole filtrare
@@ -182,12 +182,30 @@ public class ControllerApp {
 	 * @throws WrongPeriodException
 	 */
 	@PostMapping(value="filterstats")
-	public ResponseEntity<Object> getFilterStats(@RequestBody JSONObject bodyfilter) throws NoBodyFilterException, EmptyFieldException,WrongStateCodeException, WrongParamException, WrongPeriodException{
-		if(bodyfilter.isEmpty())  throw new NoBodyFilterException();
-			
+	public ResponseEntity<Object> getFilterStats(@RequestBody String bodyfilter) throws NoBodyFilterException, EmptyFieldException,WrongStateCodeException, WrongParamException, WrongPeriodException{
 		
+		JSONObject obj=(JSONObject) JSONValue.parse(bodyfilter);
+		JSONArray vectors= new JSONArray();
+		JSONArray vectorg= new JSONArray();
+		if(obj.isEmpty()) throw new NoBodyFilterException();
+		Vector<String> stateCode=new Vector<String>();
+		Vector<String> genere=new Vector<String>();
 		
-			return new ResponseEntity<>(e.FilterStats(bodyfilter), HttpStatus.OK);
+		 vectors=(JSONArray)obj.get("regione");
+		
+		for(Object o: vectors) {
+			JSONObject object=(JSONObject)o;
+			stateCode.add((String) object.get("stateCode"));	
+		}
+		 vectorg=(JSONArray) obj.get("genere");
+		 
+		 for(Object o: vectors) {
+				JSONObject object=(JSONObject)o;
+				genere.add((String) object.get("name"));	
+			}
+		 String param=(String)obj.get("param");
+		 int periodo=(int) obj.get("periodo");
+			return new ResponseEntity<>(e.FilterStats(stateCode,genere,param,periodo), HttpStatus.OK);
 		}
 		
 		
