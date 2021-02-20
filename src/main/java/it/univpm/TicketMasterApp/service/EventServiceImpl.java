@@ -163,7 +163,7 @@ public class EventServiceImpl implements EventService {
 	 * @return JSONArray
 	 */
 	@SuppressWarnings("unchecked")
-	public JSONArray FilterStats(Vector<String> stateCode, Vector<String> generi, String param, int periodo) throws EmptyFieldException, WrongStateCodeException, WrongParamException, WrongPeriodException {
+	public JSONArray FilterStats(Vector<String> stateCode, Vector<String> generi, String param, long periodo) throws EmptyFieldException, WrongStateCodeException, WrongParamException, WrongPeriodException {
 		DownloadEvent evento= new DownloadEvent();
 		Vector<String> regioni= new Vector<>();
 		JSONArray finale= new JSONArray();

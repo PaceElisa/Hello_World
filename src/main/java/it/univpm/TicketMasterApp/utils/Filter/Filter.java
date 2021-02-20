@@ -44,7 +44,7 @@ public class Filter {
 	 * @throws WrongPeriodException
 	 */
 
-	public void Parsing(Vector<String> stCod, Vector<String> ge, String parametro, int period) throws EmptyFieldException, WrongStateCodeException, WrongParamException, WrongPeriodException {
+	public void Parsing(Vector<String> stCod, Vector<String> ge, String parametro, long period) throws EmptyFieldException, WrongStateCodeException, WrongParamException, WrongPeriodException {
 		
 		if(!(stCod.isEmpty() || stCod==null)) {
 			

@@ -204,7 +204,7 @@ public class ControllerApp {
 				genere.add((String) object.get("name"));	
 			}
 		 String param=(String)obj.get("param");
-		 int periodo=(int) obj.get("periodo");
+		 long periodo=(Long) obj.get("periodo");
 		
 		 return new ResponseEntity<>(e.FilterStats(stateCode,genere,param,periodo), HttpStatus.OK);
 		}
