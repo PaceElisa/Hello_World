@@ -163,7 +163,7 @@ public class EventServiceImpl implements EventService {
 	 * @return JSONArray
 	 */
 	@SuppressWarnings("unchecked")
-	public JSONArray FilterStats(JSONObject bodyfilter) throws EmptyFieldException, WrongStateCodeException, WrongParamException, WrongPeriodException {
+	public JSONArray FilterStats(Vector<String> stateCode, Vector<String> generi, String param, int periodo) throws EmptyFieldException, WrongStateCodeException, WrongParamException, WrongPeriodException {
 		DownloadEvent evento= new DownloadEvent();
 		Vector<String> regioni= new Vector<>();
 		JSONArray finale= new JSONArray();
@@ -182,7 +182,7 @@ public class EventServiceImpl implements EventService {
 		regioni.add("SK");
 		 // inizializzazione filtro e parsing e controllo del body
 		Filter fo=new Filter();		
-		fo.Parsing(bodyfilter);
+		fo.Parsing(stateCode,generi,param,periodo);
 		//definizione struttura dati filtrata o no su cui applicare le statistiche
 		Vector<String> reg= new Vector<>();
 		if(!(fo.GetFiltereg().isEmpty()))
