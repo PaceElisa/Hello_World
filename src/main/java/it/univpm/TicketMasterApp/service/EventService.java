@@ -26,6 +26,6 @@ public interface EventService {
 	public  abstract Vector<Promoter> getPromoter(String stateCode) throws WrongStateCodeException, NoPromoterException;
 	public  abstract JSONArray StatsRegion();
 	public  abstract JSONArray  StatsPromoter(Vector<String> id) throws EmptyIDException, WrongIDExceotion;
-	public abstract JSONArray FilterStats(JSONObject bodyfilter) throws EmptyFieldException, WrongStateCodeException, WrongParamException, WrongPeriodException;
+	public abstract JSONArray FilterStats(Vector<String> stCod,Vector<String> gen, String param, int period) throws EmptyFieldException, WrongStateCodeException, WrongParamException, WrongPeriodException;
 
 }

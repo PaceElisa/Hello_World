@@ -44,24 +44,20 @@ public class Filter {
 	 * @throws WrongPeriodException
 	 */
 
-	public void Parsing(JSONObject body) throws EmptyFieldException, WrongStateCodeException, WrongParamException, WrongPeriodException {
+	public void Parsing(Vector<String> stCod, Vector<String> ge, String parametro, int period) throws EmptyFieldException, WrongStateCodeException, WrongParamException, WrongPeriodException {
 		
-		if(body.containsKey("regione")) {
-			JSONArray array=(JSONArray) body.get("regione");
-			for(Object o: array) {
-				JSONObject obj=(JSONObject) o;
-				String s=(String)obj.get("stateCode");
+		if(!(stCod.isEmpty() || stCod==null)) {
+			
+			for(String s: stCod) {
 				Controlla(s);	
 				if(!(s.equals("AB") || s.equals("QC") || s.equals("MB") || s.equals("NB") || s.equals("SK")))
 						throw new WrongStateCodeException();
 				filtreg.add(s);
 		}
 	}
-		if(body.containsKey("genere")) {
-			JSONArray array=(JSONArray) body.get("genere");
-			for(Object o: array) {
-				JSONObject obj=(JSONObject) o;
-				String s=(String)obj.get("name");
+		if(!(ge.isEmpty() || ge==null)) {
+			
+			for(String s: ge) {
 				Controlla(s);	
 				if(!(s.equals("Genere") || s.equals("Music") || s.equals("Sport") || s.equals("Altro") || s.equals("Art & Theatre")))
 						throw new WrongParamException("I parametri inseriti non sono tra quelli consentiti o sono errati, perfavore scegliere tra questi:\r\n"
@@ -74,13 +70,13 @@ public class Filter {
 			
 		}
       }
-		if(body.containsKey("periodo")) {
-			periodo= (int)body.get("periodo");
+		
+			periodo= period;
 			if(!(periodo==3 || periodo==6)) throw new WrongPeriodException("E' possibile calcolare il periodo solo trimestralmente(£) o semestralmente(6), inserire uno di questi due valori");
 			
-		}
-		if(body.containsKey("param")) {
-		 stats=(String) body.get("param");
+		
+		if(!(parametro.isEmpty() || parametro==null)) {
+		 stats=parametro;
 		 Controlla(stats);
 		 if(stats.equals("statsReg") || stats.equals("statsProm")) throw new WrongParamException("Errore: non è presente il parametro per distinguere quale statistica si vuole filtrare.... Si iserisca:\nstatsReg oppure\nstatsProm");
 		 }

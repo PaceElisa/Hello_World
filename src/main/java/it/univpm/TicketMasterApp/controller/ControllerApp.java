@@ -205,7 +205,8 @@ public class ControllerApp {
 			}
 		 String param=(String)obj.get("param");
 		 int periodo=(int) obj.get("periodo");
-			return new ResponseEntity<>(e.FilterStats(stateCode,genere,param,periodo), HttpStatus.OK);
+		
+		 return new ResponseEntity<>(e.FilterStats(stateCode,genere,param,periodo), HttpStatus.OK);
 		}
 		
 		
