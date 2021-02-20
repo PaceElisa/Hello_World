@@ -195,13 +195,20 @@ public class ControllerApp {
 		
 		for(Object o: vectors) {
 			JSONObject object=(JSONObject)o;
-			stateCode.add((String) object.get("stateCode"));	
+			String s=(String) object.get("stateCode");
+			if(s!=null) {
+			stateCode.add(s);	
+		}
 		}
 		 vectorg=(JSONArray) obj.get("genere");
 		 
 		 for(Object o: vectors) {
 				JSONObject object=(JSONObject)o;
-				genere.add((String) object.get("name"));	
+				String g=(String) object.get("name");
+				if(g!=null) {
+					genere.add(g);
+				}
+					
 			}
 		 String param=(String)obj.get("param");
 		 long periodo=(Long) obj.get("periodo");

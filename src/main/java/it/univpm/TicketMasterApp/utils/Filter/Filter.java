@@ -46,7 +46,7 @@ public class Filter {
 
 	public void Parsing(Vector<String> stCod, Vector<String> ge, String parametro, long period) throws EmptyFieldException, WrongStateCodeException, WrongParamException, WrongPeriodException {
 		
-		if(!(stCod.isEmpty() || stCod==null)) {
+		if(!(stCod.isEmpty())) {
 			
 			for(String s: stCod) {
 				Controlla(s);	
@@ -78,7 +78,7 @@ public class Filter {
 		if(!(parametro.isEmpty() || parametro==null)) {
 		 stats=parametro;
 		 Controlla(stats);
-		 if(stats.equals("statsReg") || stats.equals("statsProm")) throw new WrongParamException("Errore: non è presente il parametro per distinguere quale statistica si vuole filtrare.... Si iserisca:\nstatsReg oppure\nstatsProm");
+		 if(!(stats.equals("statsReg") || stats.equals("statsProm"))) throw new WrongParamException("Errore: non è presente il parametro per distinguere quale statistica si vuole filtrare.... Si iserisca:\nstatsReg oppure\nstatsProm");
 		 }
 	}
 	/**
@@ -87,7 +87,7 @@ public class Filter {
 	 * @throws EmptyFieldException
 	 */
 	public  void Controlla( String s) throws EmptyFieldException {
-		if(s==null|| s.isEmpty()) 
+		if( s.isEmpty()) 
 			throw new EmptyFieldException(s+"Hai dimenticato di inserire un campo nel body... Riprova aggiungendo tutti i campi");
 		}
 	/**
