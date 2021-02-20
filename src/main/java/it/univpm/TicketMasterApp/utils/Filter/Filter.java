@@ -80,6 +80,7 @@ public class Filter {
 		 Controlla(stats);
 		 if(!(stats.equals("statsReg") || stats.equals("statsProm"))) throw new WrongParamException("Errore: non è presente il parametro per distinguere quale statistica si vuole filtrare.... Si iserisca:\nstatsReg oppure\nstatsProm");
 		 }
+		
 	}
 	/**
 	 * Metodo che controlla se i parametri inseriti sono nulli o vuoti, se lo sono lancia un eccezione

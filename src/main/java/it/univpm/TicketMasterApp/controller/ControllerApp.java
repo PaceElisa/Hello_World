@@ -202,7 +202,7 @@ public class ControllerApp {
 		}
 		 vectorg=(JSONArray) obj.get("genere");
 		 
-		 for(Object o: vectors) {
+		 for(Object o: vectorg) {
 				JSONObject object=(JSONObject)o;
 				String g=(String) object.get("name");
 				if(g!=null) {
