@@ -88,7 +88,7 @@ public class Filter {
 	 */
 	public  void Controlla( String s) throws EmptyFieldException {
 		if(s==null|| s.isEmpty()) 
-			throw new EmptyFieldException("Hai dimenticato di inserire un campo nel body... Riprova aggiungendo tutti i campi");
+			throw new EmptyFieldException(s+"Hai dimenticato di inserire un campo nel body... Riprova aggiungendo tutti i campi");
 		}
 	/**
 	 * Metodo get 
