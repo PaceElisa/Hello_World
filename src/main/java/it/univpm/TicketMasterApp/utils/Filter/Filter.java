@@ -29,7 +29,7 @@ public class Filter {
 	//parametro che indica su quale statistica applicare i filtri
 	private String stats;
 	//indica il periodo di tempo su cui si vuole calcolare il minimo, massimo e medio degli eventi
-	 private int periodo;
+	 private long periodo;
 	/**
 	 * costruutore
 	 */
@@ -129,7 +129,7 @@ public class Filter {
 	/**Metodo get 
 	 * @return the periodo
 	 */
-	public int getPeriodo() {
+	public long getPeriodo() {
 		return periodo;
 	}
 	/**
