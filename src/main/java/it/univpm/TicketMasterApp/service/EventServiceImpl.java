@@ -167,7 +167,8 @@ public class EventServiceImpl implements EventService {
 		DownloadEvent evento= new DownloadEvent();
 		Vector<String> regioni= new Vector<>();
 		JSONArray finale= new JSONArray();
-		JSONObject statreg= new JSONObject();
+		JSONObject completo= new JSONObject();
+		JSONObject genere= new JSONObject();
 		evento.EventiInfo("AB");
 		evento.EventiInfo("QC");
 		evento.EventiInfo("MB");
@@ -179,79 +180,120 @@ public class EventServiceImpl implements EventService {
 		regioni.add("MB");
 		regioni.add("NB");
 		regioni.add("SK");
-		 
-		Filter fo=new Filter();
-		
+		 // inizializzazione filtro e parsing e controllo del body
+		Filter fo=new Filter();		
 		fo.Parsing(bodyfilter);
+		//definizione struttura dati filtrata o no su cui applicare le statistiche
 		Vector<String> reg= new Vector<>();
 		if(!(fo.GetFiltereg().isEmpty()))
 			reg=fo.GetFiltereg();
 		else reg=regioni;
-		
+		// inizio ciclo while in modo da ottenere un jsonobject per ogni regione contenuta nella struttura dati
 		Iterator<String> itr= reg.iterator();
 		while(itr.hasNext()) {
+			//verifico che itr. next non finisca fuori della size delle vettore e che quindi sia nullo
 			String stCode=itr.next();
 			if(stCode!=null) {
 				
+				completo.put("Regione",evento.Associa(stCode) );
 				
+				//inizio distinzione tra statistiche su  regione e statistiche su promoter
 				if(fo.getStats().equals("statsReg")) {
 					
+					Stats streg= new StasReg(evento.getStrutturaDati(), stCode);
+					completo.put("Tot_Prom",streg.CalcoloTot());
+					//se i filtri relativi al genere ci sono allora prendo solo i dati riferito a quel genere, altrimenti li prendo tutti
+					if(fo.getFiltgen().isEmpty()) {
+						completo.put("Tot_Prom_Genere", streg.CalcoloGenere());
+					}else {
+						JSONObject giusti= new JSONObject();
+						genere=streg.CalcoloGenere();
+						for(String sr: fo.getFiltgen())
+							giusti.put(sr,genere.get(sr));
+						completo.put("Tot_Prom_Genere", giusti);
+					}
+					//nel caso in cui sia i filtri relativi allo stato che al genere sono vuoti, si intuisce che
+					//l'utente è interessato solo al calcolo del numero degli eventi minimi, massimi e medi in un periodo in quello stato
+					//perciò si rimuove le parti di non interesse
+					if(fo.GetFiltereg().isEmpty() && fo.getFiltgen().isEmpty()) {
+						completo.remove("Tot_Prom");
+						completo.remove("Tot_Prom_Genere");
+					}
 					
-				}else {
+					
+				}else {// inizio parte relativa alle statistiche per promoter
+					JSONObject promoter= new JSONObject();
+					//uso DownloadEvent per scaricare una lista di promoter per lo stato passato, per po poter utilizzare
+					//StatsProm
+					//filtro la struttura dati rispetto a quella regione
+					fo.Filtraggio(evento.getStrutturaDati(), stCode);
+					DownloadEvent eve= new DownloadEvent();
+					eve.EventiInfo(stCode);
+					//prendo tutti gli id dei promoter
+					Vector<String> listaPromoter= new Vector<>();
+					for(Promoter p: eve.getListaProm()) {
+					
+						if(!(p.getID().equals("") || p.getID().equals("320"))) {
+							if(!(listaPromoter.contains(p)))
+								listaPromoter.add(p.getID());
+						}
+					
+					}
+						
+					Iterator<String> itp= listaPromoter.iterator();
+					JSONObject promoterobj= new JSONObject();
+					//in questo caso ho tanti jsonobject quanti sono gli stati, ma al loro interno ho
+					//tanti promoter quanti presenti in quella regione
+					while(itp.hasNext()) {
+						String prom=itr.next();
+						if(prom!=null) {
+							//inserisco l'id del promoter
+							promoterobj.put("ID_Promoter", prom);
+							Stats stprom= new StatsProm(fo.DatiFiltrati(),prom);
+							//inserisco il numero totali di eventi sponsorizzati da quel promoter
+							promoterobj.put("Tot_Eventi", stprom.CalcoloTot());
+							promoterobj.put("Tot_Stati_Evento",stprom.CalcoloEvento());
+							
+							//controllo se ci sono filtri per il genere, se si li applico
+							if(fo.getFiltgen().isEmpty()) {
+								promoter.put("Tot_Prom_Genere", stprom.CalcoloGenere());
+							}else {
+								JSONObject giusti= new JSONObject();
+								genere=stprom.CalcoloGenere();
+								for(String sr: fo.getFiltgen())
+									giusti.put(sr,genere.get(sr));
+								promoter.put("Tot_Eventi_Genere", giusti);
+							}
+							//nel caso in cui sia i filtri relativi allo stato che al genere sono vuoti, si intuisce che
+							//l'utente è interessato solo al calcolo del numero degli eventi minimi, massimi e medi in un periodo in quello stato
+							//perciò si rimuove le parti di non interesse
+							if(fo.GetFiltereg().isEmpty() && fo.getFiltgen().isEmpty()) {
+								promoter.remove("Tot_Eventi");
+								promoter.remove("Tot_Eventi_Genere");
+								promoter.remove("Tot_Stati_Evento");
+								
+							}
+							
+							
+						
+						completo.put("Promoter", promoter);
+						}
+					}
 					
 				}
-			}
-			
-		}
-		
-		if(fo.getStats().equals("statsReg")) {
-			if(!(fo.GetFiltereg().isEmpty() && fo.getFiltgen().isEmpty())) {
-				for(String s: fo.GetFiltereg()) {
-					fo.Filtraggio(evento.getStrutturaDati(),s);
-				
-				Stats stats=new StasReg(fo.DatiFiltrati(), s);
-				statreg.put("Regione", evento.Associa(s));
-				statreg.put("Tot_Prom", stats.CalcoloTot());
-				JSONObject appoggio=new JSONObject();
-				JSONObject correzione=new JSONObject();
-				
-				correzione.put("Tot_Prom_Genere", stats.CalcoloGenere());
-				for(String gen: fo.getFiltgen()) {
-					correzione.put(gen,appoggio.get(gen) );
+				FilterPeriodo fp= new FilterPeriodo(fo.DatiFiltrati());
+				if(fo.getPeriodo()==3) 
+					completo.put("Eventi_Trimestrali", fp.trimestrale());
+				else completo.put("Eventi_Semestrali", fp.semestrale());
+					
+				finale.add(completo);
 				}
-				statreg.put("Tot_Prom_Genere", correzione);
-				finale.add(statreg);
-				
-				}
-			} if(fo.GetFiltereg().isEmpty() && !(fo.getFiltgen().isEmpty())) {
-				
-			}
-			
-			
-		}
-		if(fo.getStats().equals("StatsProm")){
-			if(!(fo.GetFiltereg().isEmpty() && fo.getFiltgen().isEmpty())) {
-				for(String s: fo.GetFiltereg()) {
-					fo.Filtraggio(evento.getStrutturaDati(),s);
-				
-			}
-			
-			
-		}if(fo.GetFiltereg().isEmpty() && !(fo.getFiltgen().isEmpty())) {
-			
-		}
-		
-		
-		
-	   }
-		FilterPeriodo t=new FilterPeriodo(fo.DatiFiltrati());
-		if(fo.getPeriodo()==3) {
-			t.trimestrale();}
-			else { if(fo.getPeriodo()==6)
-				t.semestrale();
 			}
 		return finale;
-    }
+			
+		
+		
+		    }
 }
 
 
