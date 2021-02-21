@@ -218,6 +218,7 @@ public class EventServiceImpl implements EventService {
 					if(fo.GetFiltereg().isEmpty() && fo.getFiltgen().isEmpty()) {
 						completo.remove("Tot_Prom");
 						completo.remove("Tot_Prom_Genere");
+						fo.Filtraggio(evento.getStrutturaDati(),stCode);
 					}
 					
 					
@@ -259,9 +260,9 @@ public class EventServiceImpl implements EventService {
 								promoterobj.put("Tot_Prom_Genere", stprom.CalcoloGenere());
 							}else {
 								JSONObject giusti= new JSONObject();
-								genere=stprom.CalcoloGenere();
+								promoter=stprom.CalcoloGenere();
 								for(String sr: fo.getFiltgen())
-									giusti.put(sr,genere.get(sr));
+									giusti.put(sr,promoter.get(sr));
 								promoterobj.put("Tot_Eventi_Genere", giusti);
 							}
 							//nel caso in cui sia i filtri relativi allo stato che al genere sono vuoti, si intuisce che
@@ -288,7 +289,9 @@ public class EventServiceImpl implements EventService {
 					
 				finale.add(completo);
 				}
+			
 			}
+		
 		return finale;
 			
 		
