@@ -94,15 +94,15 @@ public class FilterPeriodo {
 		JSONObject event_sem= new JSONObject();
 		//operazioni che serve per accertarsi che gli eventi che si analizzano siano dell'anno corrente
 		LocalDate oggi=LocalDate.now();
-		String anno_prossimo=Integer.toString(oggi.plusYears(1).getYear());
-		String primo_giorno_anno= anno_prossimo+"-01-01";
-		LocalDate fine_anno= LocalDate.parse(primo_giorno_anno);
+		LocalDate anno_prossimo=(oggi.plusYears(1));
+		//String primo_giorno_anno= anno_prossimo+"-01-01";
+		//LocalDate fine_anno= LocalDate.parse(primo_giorno_anno);
 		int cont1=0,cont2=0;
 		int min=1000,max=0,med=0;
 		
 		for(Eventi e: evento) {
 			LocalDate data_evento= LocalDate.parse(e.getData());
-			if(data_evento.isBefore(fine_anno)) {// se la data che analizzo è prima del nuovo anno
+			if(data_evento.isBefore(anno_prossimo) && data_evento.isAfter(oggi)) {// se la data che analizzo è prima del nuovo anno
 				switch(data_evento.getMonthValue()) {
 				
 				case 1: cont1++ ;break;
