@@ -168,6 +168,7 @@ public class EventServiceImpl implements EventService {
 		Vector<String> regioni= new Vector<>();
 		JSONArray finale= new JSONArray();
 		JSONObject completo= new JSONObject();
+		JSONObject complete= new JSONObject();
 		JSONObject genere= new JSONObject();
 		evento.EventiInfo("AB");
 		evento.EventiInfo("QC");
@@ -286,8 +287,8 @@ public class EventServiceImpl implements EventService {
 				if(fo.getPeriodo()==3) 
 					completo.put("Eventi_Trimestrali", fp.trimestrale());
 				else completo.put("Eventi_Semestrali", fp.semestrale());
-					
-				finale.add(completo);
+					complete.put("",completo);
+				finale.add(complete);
 				}
 			
 			}

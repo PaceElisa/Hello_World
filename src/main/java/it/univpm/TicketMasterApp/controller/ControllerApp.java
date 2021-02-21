@@ -215,12 +215,16 @@ public class ControllerApp {
 			
 		}
 		
-		
+		if(!(obj.containsKey("param")))
+			throw new EmptyFieldException("Hai dimenticato di inserire  \"param\" nel body... Riprova aggiungendolo");
 		 String param=(String)obj.get("param");
+		 if(!(obj.containsKey("periodo")))
+			 throw new EmptyFieldException("Hai dimenticato di inserire  \"periodo\" nel body... Riprova aggiungendolo");
 		 long periodo=(Long) obj.get("periodo");
 		
 		 return new ResponseEntity<>(e.FilterStats(stateCode,genere,param,periodo), HttpStatus.OK);
-		}
+		
+	}
 		
 		
 		
