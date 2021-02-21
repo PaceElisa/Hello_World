@@ -159,7 +159,10 @@ public class EventServiceImpl implements EventService {
 	}
 	/**
 	 * Metodo che calcola le statistiche filtrate
-	 * @param body
+	 * @param stateCode vettore delle regioni da filtrare
+	 * @param generi vettore dei generi da filtrare
+	 * @param param indica la statistica sul quale voglio fare il filtraggio
+	 * @param periodo periodo su cui calcolo il numero minimo,massimo,medio degli eventi in quel periodo
 	 * @return JSONArray
 	 */
 	@SuppressWarnings("unchecked")
@@ -283,6 +286,7 @@ public class EventServiceImpl implements EventService {
 					}
 					
 				}
+				// introduco metodo che calcola gli eventi otrimestrali o mensili
 				FilterPeriodo fp= new FilterPeriodo(fo.DatiFiltrati());
 				if(fo.getPeriodo()==3) 
 					completo.put("Eventi_Trimestrali", fp.trimestrale());

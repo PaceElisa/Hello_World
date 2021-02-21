@@ -29,5 +29,6 @@ public interface EventService {
 	public abstract JSONArray FilterStats(Vector<String> stCod,Vector<String> gen, String param, long period) throws EmptyFieldException, WrongStateCodeException, WrongParamException, WrongPeriodException;
 
 
+	
 }
 

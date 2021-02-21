@@ -37,7 +37,10 @@ public class Filter {
 	/**
 	 * Metodo che estrapola i dati ,con iparametri da filtrare, dal body e controlla che siano corretti, se lo sono inizializza gli attributi della classe
 	 * 
-	 * @param body contiene i filtri da applicare alle statistiche
+	 * @param stCod il vettore degli stati da filtrare
+	 * @param ge il vettore dei generi da filtrare
+	 * @param parametro il parametro che si riferisce alla statistica
+	 * @param period indica il period su cui si vuole fare il calcolo del numero minimo,massimo e medio degli eventi in quel periodo
 	 * @throws EmptyFieldException
 	 * @throws WrongStateCodeException
 	 * @throws WrongParamException

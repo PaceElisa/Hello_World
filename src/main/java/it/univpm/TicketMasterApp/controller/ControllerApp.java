@@ -183,7 +183,7 @@ public class ControllerApp {
 	 */
 	@PostMapping(value="filterstats")
 	public ResponseEntity<Object> getFilterStats(@RequestBody String bodyfilter) throws NoBodyFilterException, EmptyFieldException,WrongStateCodeException, WrongParamException, WrongPeriodException{
-		
+		//estraggo elementi dal body e controllo che i parametri siano giusti
 		JSONObject obj=(JSONObject) JSONValue.parse(bodyfilter);
 		JSONArray vectors= new JSONArray();
 		JSONArray vectorg= new JSONArray();
