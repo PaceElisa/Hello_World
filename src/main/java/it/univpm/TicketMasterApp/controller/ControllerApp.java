@@ -190,26 +190,32 @@ public class ControllerApp {
 		if(obj.isEmpty()) throw new NoBodyFilterException();
 		Vector<String> stateCode=new Vector<String>();
 		Vector<String> genere=new Vector<String>();
-		
-		 vectors=(JSONArray)obj.get("regione");
-		
-		for(Object o: vectors) {
-			JSONObject object=(JSONObject)o;
-			String s=(String) object.get("stateCode");
-			if(s!=null) {
-			stateCode.add(s);	
-		}
-		}
-		 vectorg=(JSONArray) obj.get("genere");
-		 
-		 for(Object o: vectorg) {
-				JSONObject object=(JSONObject)o;
-				String g=(String) object.get("name");
-				if(g!=null) {
-					genere.add(g);
+		if(obj.containsKey("regione")) {
+			 vectors=(JSONArray)obj.get("regione");
+				
+				for(Object o: vectors) {
+					JSONObject object=(JSONObject)o;
+					String s=(String) object.get("stateCode");
+					if(s!=null) {
+					stateCode.add(s);	
 				}
-					
-			}
+				}
+			
+		} if(obj.containsKey("genere")) {
+			 vectorg=(JSONArray) obj.get("genere");
+			 
+			 for(Object o: vectorg) {
+					JSONObject object=(JSONObject)o;
+					String g=(String) object.get("name");
+					if(g!=null) {
+						genere.add(g);
+					}
+						
+				}
+			
+		}
+		
+		
 		 String param=(String)obj.get("param");
 		 long periodo=(Long) obj.get("periodo");
 		
