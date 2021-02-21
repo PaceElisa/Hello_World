@@ -256,27 +256,27 @@ public class EventServiceImpl implements EventService {
 							
 							//controllo se ci sono filtri per il genere, se si li applico
 							if(fo.getFiltgen().isEmpty()) {
-								promoter.put("Tot_Prom_Genere", stprom.CalcoloGenere());
+								promoterobj.put("Tot_Prom_Genere", stprom.CalcoloGenere());
 							}else {
 								JSONObject giusti= new JSONObject();
 								genere=stprom.CalcoloGenere();
 								for(String sr: fo.getFiltgen())
 									giusti.put(sr,genere.get(sr));
-								promoter.put("Tot_Eventi_Genere", giusti);
+								promoterobj.put("Tot_Eventi_Genere", giusti);
 							}
 							//nel caso in cui sia i filtri relativi allo stato che al genere sono vuoti, si intuisce che
 							//l'utente è interessato solo al calcolo del numero degli eventi minimi, massimi e medi in un periodo in quello stato
 							//perciò si rimuove le parti di non interesse
 							if(fo.GetFiltereg().isEmpty() && fo.getFiltgen().isEmpty()) {
-								promoter.remove("Tot_Eventi");
-								promoter.remove("Tot_Eventi_Genere");
-								promoter.remove("Tot_Stati_Evento");
+								promoterobj.remove("Tot_Eventi");
+								promoterobj.remove("Tot_Eventi_Genere");
+								promoterobj.remove("Tot_Stati_Evento");
 								
 							}
 							
 							
 						
-						completo.put("Promoter", promoter);
+						completo.put("Promoter", promoterobj);
 						}
 					}
 					
