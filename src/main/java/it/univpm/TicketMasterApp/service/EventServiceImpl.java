@@ -245,7 +245,7 @@ public class EventServiceImpl implements EventService {
 					//in questo caso ho tanti jsonobject quanti sono gli stati, ma al loro interno ho
 					//tanti promoter quanti presenti in quella regione
 					while(itp.hasNext()) {
-						String prom=itr.next();
+						String prom=itp.next();
 						if(prom!=null) {
 							//inserisco l'id del promoter
 							promoterobj.put("ID_Promoter", prom);
